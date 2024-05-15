@@ -13,6 +13,9 @@
         android:theme="@style/Theme.InternalShip"
         tools:targetApi="31">
         <activity
+            android:name=".iu.menu.terminos.Menu_Terminos_Condiciones"
+            android:exported="false" />
+        <activity
             android:name=".iu.menu.calendario.Menu_Agenda_Detalle"
             android:exported="false" />
         <activity

@@ -25,6 +25,7 @@ import com.example.internalship.db.Funcionalidad_Actividades;
 import com.example.internalship.db.Funcionalidad_Cirugia;
 import com.example.internalship.iu.menu.calendario.Menu_Agenda;
 import com.example.internalship.iu.menu.notas.Menu_Notas;
+import com.example.internalship.iu.menu.terminos.Menu_Terminos_Condiciones;
 import com.example.internalship.vo.actividadesvo.ActividadVO;
 import com.google.android.material.navigation.NavigationView;
 
@@ -34,7 +35,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
-    ImageButton imageButton, btn_main_medicina,btn_main_cirugia;
+    ImageButton imageButton, btn_main_medicina, btn_main_cirugia;
     Button btnNotificaciones;
 
     NavigationView navigationViewPrincipal;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         btnNotificaciones.setText(String.valueOf(actividadesDelDia.size()));
 
         btnNotificaciones.setOnClickListener(v -> {
-            if(!actividadesDelDia.isEmpty()){
+            if (!actividadesDelDia.isEmpty()) {
 
                 actividadesDelDia.clear();
                 actividadesDelDia = funcionalidad_actividades.getobtenerConFechaActualActividad();
@@ -74,9 +75,9 @@ public class MainActivity extends AppCompatActivity {
                 intent.putParcelableArrayListExtra("actividadesDelDia", (ArrayList<? extends Parcelable>) actividadesDelDia);
                 startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
-            }else{
+            } else {
 
-                Toast.makeText(MainActivity.this,"No tienes actividades en el dia",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "No tienes actividades en el dia", Toast.LENGTH_LONG).show();
 
             }
 
@@ -105,20 +106,28 @@ public class MainActivity extends AppCompatActivity {
 
                 int itemId = menuItem.getItemId();
 
-                if(itemId == R.id.nav_notas){
+                if (itemId == R.id.nav_notas) {
 
                     Intent intent = new Intent(MainActivity.this, Menu_Notas.class);
 
                     startActivity(intent);
 
                     return true;
-                }else if(itemId == R.id.nav_agenda){
+                } else if (itemId == R.id.nav_agenda) {
+
                     actividadesDelDia.clear();
                     actividadesDelDia = funcionalidad_actividades.getMostrarActividades();
                     Intent intent = new Intent(MainActivity.this, Menu_Agenda.class);
                     intent.putParcelableArrayListExtra("actividadesDelDia", (ArrayList<? extends Parcelable>) actividadesDelDia);
                     startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
+                } else if (itemId == R.id.nav_condicones) {
+
+                    Intent intent = new Intent(MainActivity.this, Menu_Terminos_Condiciones.class);
+
+                    startActivity(intent);
+
+                    return true;
                 }
 
                 return false;
@@ -127,17 +136,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void iniciarbd(){
-        DbHelper dbHelper=new DbHelper(MainActivity.this);
+    private void iniciarbd() {
+        DbHelper dbHelper = new DbHelper(MainActivity.this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        if(db != null){
-            Toast.makeText(this,"Datos Cargados",Toast.LENGTH_LONG).show();
-        }else {
-            Toast.makeText(this,"ERROR AL CONECTAR CON LA BD",Toast.LENGTH_LONG).show();
+        if (db != null) {
+            Toast.makeText(this, "Datos Cargados", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "ERROR AL CONECTAR CON LA BD", Toast.LENGTH_LONG).show();
         }
     }
 
-    private int cantidadActividades(){
+    private int cantidadActividades() {
         actividadesDelDia.clear();
         actividadesDelDia = funcionalidad_actividades.getobtenerConFechaActualActividad();
         return actividadesDelDia.size();

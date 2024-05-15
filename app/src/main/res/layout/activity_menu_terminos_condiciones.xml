@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/fondoterminosycondiciones"
+    tools:context=".iu.menu.terminos.Menu_Terminos_Condiciones">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:background="@drawable/edittext_border"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="30dp"
+            android:layout_height="wrap_content"
+            android:text="Terminos y Condiciones"
+            android:focusable="false"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:justificationMode="inter_word"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="20dp"
+            android:textStyle="bold"
+            android:focusable="false"
+            android:paddingBottom="20dp"
+            android:text="La Aplicacion ''My Internal Ship'' es una aplicacion creada para uso exclusivo de la doctora Ana Maria Liza Huaman, esta aplicacion esta redactada y hecha a la medida de los requisitos que requiera. Es una aplicacion personalidazada desarrollada por el Ing. Martin Alexis Cajo Velit. \n\nEsta es una aplicacion gratuita sin fines de lucro para la doctora Ana Maria Liza Huaman.
+\n\nEsta Aplicacion solo puede ser instalada mediante el archivo .APK, ya que su distribucion no se encuentra en la nube o Play Store.\n\nCualquier duda o consulta comunicacionar al administrador del sistema desde el menu desplegable en la opción de Share."
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/btnTerminosCondiciones_Retroceder"
+            android:layout_marginTop="10dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/button_retroceder"
+            app:srcCompat="@drawable/retroceder_pantalla" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
