@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/btn_medicina_OBS"
+        android:title="OBSERVACION" />
+
+    <item android:id="@+id/btn_medicina_UCI"
+        android:title="UCI" />
+
+    <item android:id="@+id/btn_medicina_UCIN"
+        android:title="UCIN" />
+
+    <item android:id="@+id/btn_medicina_HMED"
+        android:title="HOSPITALIZACIÓN MEDICINA" />
+
+    <item android:id="@+id/btn_medicina_UTS"
+        android:title="UTS" />
+
+    <item android:id="@+id/btn_medicina_export"
+        android:title="EXPORTAR" />
+</menu>

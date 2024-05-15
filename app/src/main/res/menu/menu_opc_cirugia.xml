@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/btn_cirugia_OBS"
+        android:title="OBSERVACION" />
+
+    <item android:id="@+id/btn_cirugia_UCI"
+        android:title="URGENCIA CIRUGIA" />
+
+    <item android:id="@+id/btn_cirugia_TSHOCK"
+        android:title="TRAUMA SHOCK" />
+
+    <item android:id="@+id/btn_cirugia_HCirugia"
+        android:title="HOSPITALIZACIÓN CIRUGIA" />
+
+    <item android:id="@+id/btn_cirugia_export"
+        android:title="EXPORTAR" />
+</menu>

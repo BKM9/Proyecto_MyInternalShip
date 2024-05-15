@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_notas"
+        android:icon="@drawable/notes"
+        android:title="Notas" />
+
+    <item
+        android:id="@+id/navmenu2"
+        android:icon="@drawable/exportaciones"
+        android:title="Exportaciones" />
+
+    <item
+        android:id="@+id/navmenu3"
+        android:icon="@drawable/galeria"
+        android:title="Galeria" />
+
+    <item
+        android:icon="@drawable/agenda"
+        android:id="@+id/nav_agenda"
+        android:title="Agenda" />
+
+    <item
+        android:icon="@drawable/calculadora"
+        android:id="@+id/nav_calculadora"
+        android:title="Calculadora dosis" />
+
+    <item
+        android:id="@+id/nav_condicones"
+        android:icon="@drawable/terminosycondiciones"
+        android:title="Terminos y condiciones" />
+
+    <item
+        android:id="@+id/nav_shere"
+        android:icon="@drawable/share"
+        android:title="Share" />
+</menu>
