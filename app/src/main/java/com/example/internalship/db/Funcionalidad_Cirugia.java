@@ -5,11 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.principal.vo.cirugiaVO.CHCirugiaVO;
-import com.example.principal.vo.cirugiaVO.CObservacionesVO;
-import com.example.principal.vo.cirugiaVO.CPacienteVO;
-import com.example.principal.vo.cirugiaVO.CShockVO;
-import com.example.principal.vo.cirugiaVO.CUcisVO;
+import com.example.internalship.vo.cirugiaVO.CHCirugiaVO;
+import com.example.internalship.vo.cirugiaVO.CObservacionesVO;
+import com.example.internalship.vo.cirugiaVO.CPacienteVO;
+import com.example.internalship.vo.cirugiaVO.CShockVO;
+import com.example.internalship.vo.cirugiaVO.CUcisVO;
 
 import java.util.ArrayList;
 import java.util.List;

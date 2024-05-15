@@ -3,17 +3,6 @@ package com.example.internalship.utils;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.example.principal.vo.HmedicinaVO;
-import com.example.principal.vo.ObservacionesVO;
-import com.example.principal.vo.PacienteVO;
-import com.example.principal.vo.UcinsVO;
-import com.example.principal.vo.UcisVO;
-import com.example.principal.vo.UtsVO;
-import com.example.principal.vo.cirugiaVO.CHCirugiaVO;
-import com.example.principal.vo.cirugiaVO.CObservacionesVO;
-import com.example.principal.vo.cirugiaVO.CPacienteVO;
-import com.example.principal.vo.cirugiaVO.CUcisVO;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -1,7 +1,7 @@
 package com.example.internalship.utils;
 
-import com.example.principal.models.GoogleSheetsResponse;
-import com.example.principal.models.IGoogleSheets;
+import com.example.internalship.models.GoogleSheetsResponse;
+import com.example.internalship.models.IGoogleSheets;
 
 public class Common {
     public static String SPREAD_SHEET_ID = "1EqFoP9YNUjsZfD3JJSF9sf2kJpDoTpIxCihU82V6ga0";

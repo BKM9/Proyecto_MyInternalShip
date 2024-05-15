@@ -7,7 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 
-import com.example.principal.vo.notevo.NoteVO;
+
+import com.example.internalship.vo.notevo.NoteVO;
 
 import java.util.ArrayList;
 import java.util.List;
