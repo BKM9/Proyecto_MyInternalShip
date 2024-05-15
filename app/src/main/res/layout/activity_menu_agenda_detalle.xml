@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/fondo_main"
+    tools:context=".iu.menu.calendario.Menu_Agenda_Detalle">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <EditText
+            android:id="@+id/txtAsunto_Calendario_Detalle"
+            android:layout_width="match_parent"
+            android:layout_height="44sp"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Ingresa Asunto"
+            android:background="@drawable/edittext_border"
+            android:layout_marginBottom="10dp"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtFechaHora_Detalle"
+            android:layout_width="match_parent"
+            android:layout_height="44sp"
+            android:ems="10"
+            android:background="@drawable/edittext_border"
+            android:hint="Hora y Fecha"
+            android:focusableInTouchMode="false"
+            android:layout_marginBottom="10dp"
+            android:inputType="date"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/txtDescripcion_Calendario_Detalle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="top|start"
+            android:background="@drawable/edittext_border"
+            android:inputType="textMultiLine"
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            tools:ignore="RtlCompat" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="107dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp">
+
+            <ImageButton
+                android:id="@+id/btnUpdate_Calendario_Detalle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="40dp"
+                android:background="@drawable/btn_actualizar"
+                app:srcCompat="@drawable/actualizar" />
+
+            <ImageButton
+                android:id="@+id/btnCancelar_Calendario_Detalle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/btn_delete_nota"
+                app:srcCompat="@drawable/delete" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

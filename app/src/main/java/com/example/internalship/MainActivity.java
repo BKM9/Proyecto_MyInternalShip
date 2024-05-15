@@ -23,6 +23,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.internalship.db.DbHelper;
 import com.example.internalship.db.Funcionalidad_Actividades;
 import com.example.internalship.db.Funcionalidad_Cirugia;
+import com.example.internalship.iu.menu.calendario.Menu_Agenda;
 import com.example.internalship.iu.menu.notas.Menu_Notas;
 import com.example.internalship.vo.actividadesvo.ActividadVO;
 import com.google.android.material.navigation.NavigationView;
@@ -62,24 +63,24 @@ public class MainActivity extends AppCompatActivity {
         navigationViewPrincipal = findViewById(R.id.navigationViewPrincipal);
 
         btnNotificaciones.setText(String.valueOf(actividadesDelDia.size()));
-//
-//        btnNotificaciones.setOnClickListener(v -> {
-//            if(!actividadesDelDia.isEmpty()){
-//
-//                actividadesDelDia.clear();
-//                actividadesDelDia = funcionalidad_actividades.getobtenerConFechaActualActividad();
-//
-//                Intent intent = new Intent(MainActivity.this, Vista_Calendario.class);
-//                intent.putParcelableArrayListExtra("actividadesDelDia", (ArrayList<? extends Parcelable>) actividadesDelDia);
-//                startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-//
-//            }else{
-//
-//                Toast.makeText(MainActivity.this,"No tienes actividades en el dia",Toast.LENGTH_LONG).show();
-//
-//            }
-//
-//        });
+
+        btnNotificaciones.setOnClickListener(v -> {
+            if(!actividadesDelDia.isEmpty()){
+
+                actividadesDelDia.clear();
+                actividadesDelDia = funcionalidad_actividades.getobtenerConFechaActualActividad();
+
+                Intent intent = new Intent(MainActivity.this, Menu_Agenda.class);
+                intent.putParcelableArrayListExtra("actividadesDelDia", (ArrayList<? extends Parcelable>) actividadesDelDia);
+                startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
+            }else{
+
+                Toast.makeText(MainActivity.this,"No tienes actividades en el dia",Toast.LENGTH_LONG).show();
+
+            }
+
+        });
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,11 +113,11 @@ public class MainActivity extends AppCompatActivity {
 
                     return true;
                 }else if(itemId == R.id.nav_agenda){
-//                    actividadesDelDia.clear();
-//                    actividadesDelDia = funcionalidad_actividades.getMostrarActividades();
-//                    Intent intent = new Intent(MainActivity.this, Vista_Calendario.class);
-//                    intent.putParcelableArrayListExtra("actividadesDelDia", (ArrayList<? extends Parcelable>) actividadesDelDia);
-//                    startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    actividadesDelDia.clear();
+                    actividadesDelDia = funcionalidad_actividades.getMostrarActividades();
+                    Intent intent = new Intent(MainActivity.this, Menu_Agenda.class);
+                    intent.putParcelableArrayListExtra("actividadesDelDia", (ArrayList<? extends Parcelable>) actividadesDelDia);
+                    startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
                 }
 
