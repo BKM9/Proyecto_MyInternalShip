@@ -44,4 +44,6 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
     implementation("androidx.constraintlayout:constraintlayout:VERSION")
+
+    implementation("com.github.chrisbanes:PhotoView:2.3.0")
 }

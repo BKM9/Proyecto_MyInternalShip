@@ -24,22 +24,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ECOGRAFIA"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:layout_marginBottom="20dp"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewpager_ECOGRAFIA"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="RADIOLOGIA"
+                android:text="1. Rayos X"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:layout_marginTop="20dp"
@@ -52,11 +37,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2. Ecografia"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:layout_marginBottom="20dp"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager_ECOGRAFIA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="RESONANCIA"
+                android:text="3.Tomografía"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:layout_marginTop="20dp"

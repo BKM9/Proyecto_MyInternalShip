@@ -43,7 +43,7 @@
             android:textStyle="bold"
             android:focusable="false"
             android:paddingBottom="20dp"
-            android:text="La Aplicación ''My Internal Ship'' es una aplicación creada para uso exclusivo de la doctora Ana Maria Liza Huamán, esta aplicación esta redactada y hecha a la medida de los requisitos que requiera. Es una aplicación personalidazada desarrollada por el Ing. Martin Alexis Cajo Velit. \n\nEsta es una aplicación gratuita sin fines de lucro para la doctora Ana Maria Liza Huamán.
+            android:text="La Aplicación ''My Internal Ship'' es una aplicación creada para uso exclusivo de la doctora Ana Maria Liza Huamán, esta aplicación esta redactada y hecha a la medida de los requisitos que requiera. Es una aplicación personalizada que ha sido desarrollada por el Ing. Martin Alexis Cajo Velit. \n\nEsta es una aplicación gratuita sin fines de lucro para la doctora Ana Maria Liza Huamán.
 \n\nEsta Aplicación solo puede ser instalada mediante el archivo .APK, ya que su distribución no se encuentra en la nube o Play Store.\n\nCualquier duda o consulta comunicacionar al administrador del sistema desde el menú desplegable en la opción de Share."
             android:textColor="#000000"
             android:textSize="16sp" />

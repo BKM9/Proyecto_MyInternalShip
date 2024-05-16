@@ -63,9 +63,9 @@ public class VPAdapter extends RecyclerView.Adapter<VPAdapter.ViewHolder> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent intent = new Intent(v.getContext(), FullScreenImageActivity.class);
-//                    intent.putExtra("IMAGE_ID", viewPageItems.get(getAdapterPosition()).imageID);
-//                    v.getContext().startActivity(intent);
+                    Intent intent = new Intent(v.getContext(), FullScreenImageActivity.class);
+                    intent.putExtra("IMAGE_ID", viewPageItems.get(getAdapterPosition()).imageID);
+                    v.getContext().startActivity(intent);
                 }
             });
         }
