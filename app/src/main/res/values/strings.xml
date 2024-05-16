@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">InternalShip</string>
+    <string name="app_name">Principal</string>
+    <string name="title_activity_vista_medicina_uts">Vista_Medicina_UTS</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

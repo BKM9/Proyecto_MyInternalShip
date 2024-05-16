@@ -26,6 +26,7 @@ import com.example.internalship.db.Funcionalidad_Cirugia;
 import com.example.internalship.iu.menu.calendario.Menu_Agenda;
 import com.example.internalship.iu.menu.notas.Menu_Notas;
 import com.example.internalship.iu.menu.terminos.Menu_Terminos_Condiciones;
+import com.example.internalship.iu.opciones.cirugia.Cirugia_Main;
 import com.example.internalship.vo.actividadesvo.ActividadVO;
 import com.google.android.material.navigation.NavigationView;
 
@@ -95,10 +96,10 @@ public class MainActivity extends AppCompatActivity {
 //            startActivity(intent);
 //        });
 
-//        btn_main_cirugia.setOnClickListener(v -> {
-//            Intent intent = new Intent(MainActivity.this, Vista_Cirugia.class);
-//            startActivity(intent);
-//        });
+        btn_main_cirugia.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, Cirugia_Main.class);
+            startActivity(intent);
+        });
 
         navigationViewPrincipal.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
