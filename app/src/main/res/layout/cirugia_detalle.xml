@@ -766,7 +766,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnImg_Cirugia"
+                    android:id="@+id/btnDesplegableCirugia"
                     android:layout_width="60sp"
                     android:layout_height="60sp"
                     android:layout_marginStart="10dp"
@@ -779,6 +779,7 @@
                     android:textSize="15dp"
                     android:textStyle="bold" />
             </LinearLayout>
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

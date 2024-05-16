@@ -29,9 +29,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.internalship.MainActivity;
 import com.example.internalship.R;
+import com.example.internalship.VPAdapter;
+import com.example.internalship.ViewPageItem;
 import com.example.internalship.db.Funcionalidad_Cirugia;
 import com.example.internalship.iu.opciones.cirugia.hcirugia.Cirugia_HCirugia;
 import com.example.internalship.iu.opciones.cirugia.obs.Cirugia_OBS;
@@ -40,6 +43,7 @@ import com.example.internalship.iu.opciones.cirugia.uci.Cirugia_UCI;
 import com.example.internalship.utils.Alertas;
 import com.example.internalship.vo.cirugiaVO.CPacienteVO;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -52,6 +56,7 @@ public class Cirugia_Detalle extends AppCompatActivity {
     EditText textViewtto, textViewte, textViewplan, txthora, txthc, txtedad, twreevaluacion, txtcama;
     Funcionalidad_Cirugia funcionalidad_cirugia = new Funcionalidad_Cirugia(Cirugia_Detalle.this);
     private boolean isDeleting = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,7 +115,7 @@ public class Cirugia_Detalle extends AppCompatActivity {
 
         btnactualizar = findViewById(R.id.btnActualizar_Cirugia);
         btnaDELETE = findViewById(R.id.btnEliminar_Cirugia);
-        btnPrueba = findViewById(R.id.btnImg_Cirugia);
+        btnPrueba = findViewById(R.id.btnDesplegableCirugia);
     }
 
     @SuppressLint("ClickableViewAccessibility")

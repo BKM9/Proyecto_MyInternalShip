@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.internalship.Cirugia_Imagenes;
 import com.example.internalship.R;
 import com.example.internalship.iu.opciones.cirugia.Cirugia_Detalle;
 import com.example.internalship.vo.cirugiaVO.CPacienteVO;
@@ -60,7 +61,7 @@ public class ListAdapterPacientesCirugia extends RecyclerView.Adapter<ListAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iconImage;
         TextView nombrePaciente,camaPaciente,hcPaciente,fipaciente, edadpaciente;
-        ImageButton btnInformation;
+        ImageButton btnInformation, btnImg;
 
 
         ViewHolder(View itemView){
@@ -72,7 +73,7 @@ public class ListAdapterPacientesCirugia extends RecyclerView.Adapter<ListAdapte
             fipaciente = itemView.findViewById(R.id.fiTextView);
             edadpaciente = itemView.findViewById(R.id.edadTextView);
             btnInformation = itemView.findViewById(R.id.imageButtonInformation);
-
+            btnImg = itemView.findViewById(R.id.imageButtonImagenes);
         }
 
         void bindData(final CPacienteVO item){
@@ -83,18 +84,28 @@ public class ListAdapterPacientesCirugia extends RecyclerView.Adapter<ListAdapte
             edadpaciente.setText("Edad: ".concat(item.getEdad()));
             camaPaciente.setText(item.getCama());
 
-            btnInformation.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, Cirugia_Detalle.class);
-                    Bundle bundle = new Bundle();
+            btnInformation.setOnClickListener(v -> {
+                Intent intent = new Intent(context, Cirugia_Detalle.class);
+                Bundle bundle = new Bundle();
 
-                    bundle.putParcelable("ObjetoPaciente", (Parcelable) item);
+                bundle.putParcelable("ObjetoPaciente", (Parcelable) item);
 
-                    intent.putExtras(bundle);
+                intent.putExtras(bundle);
 
-                    startActivity(context,intent,bundle);
-                }
+                startActivity(context,intent,bundle);
+            });
+
+            btnImg.setOnClickListener(v -> {
+
+                Intent intent = new Intent(context, Cirugia_Imagenes.class);
+
+                Bundle bundle = new Bundle();
+
+                bundle.putParcelable("ObjetoPaciente", (Parcelable) item);
+
+                intent.putExtras(bundle);
+
+                startActivity(context,intent,bundle);
             });
         }
     }

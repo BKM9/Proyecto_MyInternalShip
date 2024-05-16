@@ -45,7 +45,7 @@
                     android:id="@+id/nombrePacienteTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginBottom="5dp"
                     android:text="Codelia"
                     android:textColor="@android:color/black"
                     android:textSize="24sp"
@@ -79,7 +79,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="200dp"
                 android:layout_marginLeft="225dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginEnd="3dp"
                 android:layout_marginRight="6dp"
                 android:layout_toEndOf="@id/iconImageView"
@@ -89,7 +89,7 @@
 
                 <TextView
                     android:id="@+id/camaTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
@@ -104,9 +104,17 @@
                 <ImageButton
                     android:id="@+id/imageButtonInformation"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35sp"
+                    android:layout_marginBottom="5dp"
                     android:background="@drawable/imagebutton_informacion"
                     app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonImagenes"
+                    android:layout_width="match_parent"
+                    android:layout_height="35sp"
+                    android:background="@drawable/imagebutton_informacion"
+                    app:srcCompat="@drawable/btn_photo" />
 
             </LinearLayout>
 

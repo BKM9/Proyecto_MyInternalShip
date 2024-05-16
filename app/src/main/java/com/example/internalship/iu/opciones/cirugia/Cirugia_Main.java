@@ -1,5 +1,6 @@
 package com.example.internalship.iu.opciones.cirugia;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,8 +15,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.internalship.R;
+import com.example.internalship.VPAdapter;
+import com.example.internalship.ViewPageItem;
 import com.example.internalship.adapter.ListAdapterPacientesCirugia;
 import com.example.internalship.db.Funcionalidad_Cirugia;
 import com.example.internalship.vo.cirugiaVO.CPacienteVO;
@@ -28,6 +32,7 @@ public class Cirugia_Main extends AppCompatActivity {
 
     List<CPacienteVO> listaPacientes = new ArrayList<>();
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
