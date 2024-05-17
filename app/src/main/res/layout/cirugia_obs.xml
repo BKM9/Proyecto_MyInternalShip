@@ -163,7 +163,7 @@
 
                         <TextView
                             android:id="@+id/lbnumdias"
-                            android:layout_width="10dp"
+                            android:layout_width="40dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="#F6C9AB"
@@ -184,18 +184,22 @@
                             android:layout_weight="1"
                             android:editable="false"
                             android:gravity="center_vertical"
-                            android:hint=""
-                            android:textAlignment="viewStart"
+                            android:hint="dias"
+                            android:textAlignment="center"
                             android:textColor="#000000"
                             android:textSize="15sp"
                             tools:ignore="RtlCompat" />
 
                         <Switch
                             android:id="@+id/switchModificarObs_Cirugia"
-                            android:layout_width="wrap_content"
+                            android:layout_width="140dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Actualizar"
+                            android:text="Mostrar campos"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textAllCaps="false"
                             tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                     </LinearLayout>

@@ -74,6 +74,9 @@ public class Cirugia_OBS extends AppCompatActivity {
         init();
 
         cargarRowsObservaciones();
+
+        ocultarItems();
+
     }
 
     private void getBundle() {
@@ -108,15 +111,16 @@ public class Cirugia_OBS extends AppCompatActivity {
         textfecha.setText(fechIngresoHora);
         txthoraingrreso.setText(horaingreso);
         twnumdias.setText(numdias);
-        ocultarItems();
         switchModificar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     banderaVisible = true;
+                    switchModificar.setText("Ocultar campos");
                     ocultarItems();
                 } else {
                     banderaVisible = false;
+                    switchModificar.setText("Mostrar campos");
                     ocultarItems();
                 }
             }
@@ -162,7 +166,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             textView = new TextView(this);
             textView.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, // ancho
-                    LinearLayout.LayoutParams.WRAP_CONTENT // alto
+                    200 // alto
             ));
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) textView.getLayoutParams();
             params.setMargins(10, 10, 10, 5); // márgenes

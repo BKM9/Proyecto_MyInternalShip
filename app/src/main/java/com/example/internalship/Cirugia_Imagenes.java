@@ -19,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.internalship.db.Funcionalidad_Cirugia;
+import com.example.internalship.iu.opciones.cirugia.Cirugia_Main;
 import com.example.internalship.vo.photo.foto;
 
 import java.util.ArrayList;
@@ -171,4 +172,13 @@ public class Cirugia_Imagenes extends AppCompatActivity {
 
         return viewPageItems;
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(Cirugia_Imagenes.this, Cirugia_Main.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
