@@ -10,6 +10,7 @@ import com.example.internalship.vo.cirugiaVO.CObservacionesVO;
 import com.example.internalship.vo.cirugiaVO.CPacienteVO;
 import com.example.internalship.vo.cirugiaVO.CShockVO;
 import com.example.internalship.vo.cirugiaVO.CUcisVO;
+import com.example.internalship.vo.photo.foto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -510,6 +511,69 @@ public class Funcionalidad_Cirugia extends DbHelper {
         }
 
         return listdatos;
+    }
+
+    public List<foto> list_Fotos(String idPac, String tipoFoto){
+        List<foto> listdatos = new ArrayList<>();
+
+        try {
+
+            DbHelper dbHelper = new DbHelper(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_IMAGENES + " WHERE idPaciente = ? AND tipoFoto = ?", new String[]{idPac, tipoFoto});
+
+            if (cursor.moveToFirst()){
+                do {
+
+                    foto datos = new foto();
+                    datos.setId(cursor.getInt(0));
+                    datos.setTitulo(cursor.getString(1));
+                    datos.setDescripcion(cursor.getString(2));
+                    datos.setUrl(cursor.getString(3));
+                    datos.setIdPaciente(cursor.getInt(4));
+                    datos.setTipoFoto(cursor.getString(5));
+
+                    listdatos.add(datos);
+                } while (cursor.moveToNext());
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public int eliminar_Foto(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        return db.delete(TABLE_IMAGENES, "id = ?", new String[]{id});
+    }
+
+    public long insertar_Cirugia_Foto(String titulo, String descripcion,
+                                     String url, String idPac, String tipoFoto){
+
+        long id = 0;
+        try {
+
+            DbHelper dbHelper = new DbHelper(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("titulo", titulo);
+            contentValues.put("descripcion", descripcion);
+            contentValues.put("url", url);
+            contentValues.put("idPaciente", idPac);
+            contentValues.put("tipoFoto", tipoFoto);
+
+            id = db.insert(TABLE_IMAGENES, null, contentValues);
+
+        } catch (Exception e){
+            e.toString();
+        }
+        return id;
+
     }
 
 }

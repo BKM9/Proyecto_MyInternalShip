@@ -101,7 +101,7 @@ public class ListAdapterPacientesCirugia extends RecyclerView.Adapter<ListAdapte
 
                 Bundle bundle = new Bundle();
 
-                bundle.putParcelable("ObjetoPaciente", (Parcelable) item);
+                bundle.putInt("idPaciente", item.getId());
 
                 intent.putExtras(bundle);
 

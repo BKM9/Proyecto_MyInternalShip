@@ -33,14 +33,14 @@
                 android:textStyle="bold" />
 
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewpager_RADIOLOGIA"
+                android:id="@+id/viewpager_RADIOLOGIA_CIRUGIA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2. Ecografia"
+                android:text="2. Ecografía"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:layout_marginBottom="20dp"
@@ -48,7 +48,7 @@
                 android:textStyle="bold" />
 
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewpager_ECOGRAFIA"
+                android:id="@+id/viewpager_ECOGRAFIA_CIRUGIA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -60,12 +60,27 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:layout_marginTop="20dp"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager_RESONANCIA_CIRUGIA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4. Otros"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewpager_RESONANCIA"
+                android:id="@+id/viewpager_OTROS_CIRUGIA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

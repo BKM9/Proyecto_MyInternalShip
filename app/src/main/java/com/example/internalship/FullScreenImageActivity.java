@@ -1,5 +1,9 @@
 package com.example.internalship;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -9,6 +13,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.github.chrisbanes.photoview.PhotoView;
+
+import java.io.File;
 
 public class FullScreenImageActivity extends AppCompatActivity {
 
@@ -24,7 +30,10 @@ public class FullScreenImageActivity extends AppCompatActivity {
         });
 
         PhotoView photoView = findViewById(R.id.full_screen_image);
-        int imageId = getIntent().getIntExtra("IMAGE_ID", 0);
-        photoView.setImageResource(imageId);
+        Intent intent = getIntent();
+        String imagenUriStr = intent.getStringExtra("IMAGE_ID");
+        Uri imagenUri = Uri.parse(imagenUriStr);
+        photoView.setImageURI(imagenUri);
+
     }
 }

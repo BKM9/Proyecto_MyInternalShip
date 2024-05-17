@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 public class DbHelper extends SQLiteOpenHelper {
 
     //NO TOCAR LA DATABASE_VERSION SI NO SE BORRA LO ALMACENADO
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NOMBRE = "notas.db";
     public static final String TABLE_NOTAS = "t_notas";
     public static final String TABLE_ACTIVIDADES = "t_actividades";
@@ -29,6 +29,9 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String TABLE_PACIENTES_CIRUGIA_UCI = "t_pacientes_cirugia_UCI";
     public static final String TABLE_PACIENTES_CIRUGIA_OBS = "t_pacientes_cirugia_OBS";
     public static final String TABLE_PACIENTES_CIRUGIA_TSHOCK = "t_pacientes_cirugia_TSHOCK";
+
+    // --- TABLA IMAGENES
+    public static final String TABLE_IMAGENES = "t_imagenes";
 
     public DbHelper(@Nullable Context context) {
         super(context, DATABASE_NOMBRE, null, DATABASE_VERSION);
@@ -132,13 +135,21 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
+    public void generarTabla_Imagenes(@NonNull SQLiteDatabase db){
+        db.execSQL("CREATE TABLE " + TABLE_IMAGENES + " (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "titulo TEXT NOT NULL," +
+                "descripcion TEXT NOT NULL," +
+                "url TEXT NOT NULL," +
+                "idPaciente INTEGER NOT NULL," +
+                "tipoFoto TEXT NOT NULL)");
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         switch (oldVersion){
-//            case 1:
-//                generarTablas_Cirugia(db);
-//            case 2:
-//                generarTablas_Cirugia(db);
+            case 1:
+                generarTabla_Imagenes(db);
         }
     }
 }

@@ -2,6 +2,7 @@ package com.example.internalship;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -15,6 +16,8 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -33,6 +36,8 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.Manifest;
+
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
@@ -42,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationViewPrincipal;
     List<ActividadVO> actividadesDelDia = new ArrayList<>();
     Funcionalidad_Actividades funcionalidad_actividades = new Funcionalidad_Actividades(MainActivity.this);
+
+    private static final int CODIGO_SOLICITUD_PERMISO = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +60,26 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Permiso denegado", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Permiso concedido", Toast.LENGTH_SHORT).show();
+        }
+
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE)) {
+            // Muestra una explicación al usuario.
+        } else {
+            // No es necesario mostrar una explicación al usuario.
+        }
+
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.MANAGE_EXTERNAL_STORAGE}, CODIGO_SOLICITUD_PERMISO);
+
+
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CODIGO_SOLICITUD_PERMISO);
+//        }
 
         iniciarbd();
         cantidadActividades();
@@ -168,4 +195,20 @@ public class MainActivity extends AppCompatActivity {
         builder.setNegativeButton("No", null);
         builder.show();
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case CODIGO_SOLICITUD_PERMISO: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // El permiso fue concedido. Puedes continuar con la operación.
+                } else {
+                    // El permiso fue denegado. Debes manejar la denegación del permiso.
+                }
+                return;
+            }
+        }
+    }
+
 }
