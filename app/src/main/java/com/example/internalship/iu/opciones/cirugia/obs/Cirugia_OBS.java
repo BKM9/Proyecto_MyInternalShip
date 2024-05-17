@@ -622,7 +622,6 @@ public class Cirugia_OBS extends AppCompatActivity {
         int code = funcionalidad_cirugia.actualizar_Paciente_Cirugia_OBS(objeto);
 
         if(code >= 0){
-            cargarRowsObservaciones();
             Toast.makeText(Cirugia_OBS.this, "Se actualizo la Observación ".concat(objeto.getDia()), Toast.LENGTH_SHORT).show();
         }
     }
