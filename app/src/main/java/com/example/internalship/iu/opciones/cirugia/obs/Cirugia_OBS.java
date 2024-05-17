@@ -29,6 +29,7 @@ import com.example.internalship.R;
 import com.example.internalship.db.Funcionalidad_Cirugia;
 import com.example.internalship.iu.opciones.cirugia.Cirugia_Detalle;
 import com.example.internalship.utils.Alertas;
+import com.example.internalship.utils.Util;
 import com.example.internalship.vo.cirugiaVO.CObservacionesVO;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class Cirugia_OBS extends AppCompatActivity {
 
     private List<EditText> editTextList;
 
-    Button btnupdateobs, btnaddobs;
+    Button btnaddobs;
 
     Funcionalidad_Cirugia funcionalidad_cirugia = new Funcionalidad_Cirugia(Cirugia_OBS.this);
 
@@ -68,7 +69,7 @@ public class Cirugia_OBS extends AppCompatActivity {
 
         getBundle();
 
-        listOBS = funcionalidad_cirugia.list_COBS(idCama);
+        listOBS = funcionalidad_cirugia.list_ObtenerOBS(idCama);
 
         init();
 
@@ -90,9 +91,24 @@ public class Cirugia_OBS extends AppCompatActivity {
         txthoraingrreso = findViewById(R.id.txtObsHora_Cirugia);
         twnumdias = findViewById(R.id.txtObsNumDias_Cirugia);
         switchModificar = findViewById(R.id.switchModificarObs_Cirugia);
-        btnupdateobs = this.findViewById(R.id.buttonActualizarObservacionadd_Cirugia);
         btnaddobs = this.findViewById(R.id.btnAgregarObservacion_Cirugia);
 
+        String fechIngresoHora = "No info";
+        String horaingreso = "No info";
+        String numdias = Util.obtenerdiasenestadoporlistaObs_Cirugia(listOBS);
+
+        for (CObservacionesVO obs : listOBS) {
+            if (obs.getPrimeringreso().equals("1")) {
+                fechIngresoHora = obs.getDia();
+                horaingreso = obs.getHoraingreso();
+                break;
+            }
+        }
+
+        textfecha.setText(fechIngresoHora);
+        txthoraingrreso.setText(horaingreso);
+        twnumdias.setText(numdias);
+        ocultarItems();
         switchModificar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

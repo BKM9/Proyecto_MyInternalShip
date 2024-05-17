@@ -10,11 +10,11 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -33,6 +33,7 @@ import com.example.internalship.utils.Util;
 import com.example.internalship.vo.cirugiaVO.CObservacionesVO;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class Cirugia_OBS_Add extends AppCompatActivity {
@@ -46,6 +47,8 @@ public class Cirugia_OBS_Add extends AppCompatActivity {
     private boolean isDeleting = false;
     int banderaingreso;
     Funcionalidad_Cirugia funcionalidad_cirugia = new Funcionalidad_Cirugia(Cirugia_OBS_Add.this);
+
+    List<CObservacionesVO> listOBS;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,9 @@ public class Cirugia_OBS_Add extends AppCompatActivity {
         });
 
         getBundle();
+
+        listOBS = funcionalidad_cirugia.list_ObtenerOBS(idCama);
+
         init();
         
     }
@@ -90,6 +96,7 @@ public class Cirugia_OBS_Add extends AppCompatActivity {
         btnaddobs = findViewById(R.id.btnaddobs_Cirugia);
 
         twTituloCamaObservacionADD.setText("OBSERVACION CAMA : ".concat(idCama));
+
         txtfechAddObs.setOnClickListener(v -> {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -115,6 +122,7 @@ public class Cirugia_OBS_Add extends AppCompatActivity {
 
             datePickerDialog.show();
         });
+
         txthoraingresoaddobs.setOnClickListener(v -> {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -138,13 +146,42 @@ public class Cirugia_OBS_Add extends AppCompatActivity {
 
             timePickerDialog.show();
         });
+
         btnaddobs.setOnClickListener(v -> guardarDatos(idCama));
+
         btncancelarobsadd.setOnClickListener(v -> {
             Intent intent = new Intent(Cirugia_OBS_Add.this, Cirugia_Detalle.class);
             Bundle bundle = new Bundle();
             //bundle.putParcelable("ObjetoPaciente", (Parcelable) ObjetoPaciente);
             intent.putExtras(bundle);
             startActivity(intent);
+        });
+
+        primeravez.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if(!listOBS.isEmpty()){
+                        if(Util.existefechaprimerregistro(listOBS, Cirugia_OBS_Add.this)){
+                            primeravez.setChecked(false);
+                            banderaingreso = 0;
+                        }else{
+                            txthoraingresoaddobs.setVisibility(View.VISIBLE);
+                            lbhoraingresoaddobs.setVisibility(View.VISIBLE);
+                            banderaingreso = 1;
+                        }
+                    }else{
+                        txthoraingresoaddobs.setVisibility(View.VISIBLE);
+                        lbhoraingresoaddobs.setVisibility(View.VISIBLE);
+                        banderaingreso = 1;
+                    }
+                } else {
+                    txthoraingresoaddobs.setVisibility(View.GONE);
+                    lbhoraingresoaddobs.setVisibility(View.GONE);
+                    banderaingreso = 0;
+                    txthoraingresoaddobs.setText("");
+                }
+            }
         });
 
     }
@@ -161,7 +198,7 @@ public class Cirugia_OBS_Add extends AppCompatActivity {
         String valProcedimiento = txtprocedimientoobsadd.getText().toString();
         String valtxthoraingresoaddobs = txthoraingresoaddobs.getText().toString();
 
-//        if (!Util.existefechaendatosalmacenadosOBS_Cirugia(ObjetoPaciente.getObservaciones(), valfechIngreso)) {
+        if (!Util.existefechaendatosalmacenadosOBS_Cirugia(listOBS, valfechIngreso)) {
             if(primeravez.isChecked()){
                 if (!Util.esNulo(Cirugia_OBS_Add.this, valfechIngreso, cama)) {
 
@@ -204,10 +241,10 @@ public class Cirugia_OBS_Add extends AppCompatActivity {
                     Toast.makeText(Cirugia_OBS_Add.this, "Falta la fecha", Toast.LENGTH_LONG).show();
                 }
             }
-//        }
-//        else {
-//            Toast.makeText(Cirugia_OBS_Add.this, "La fecha ya existe", Toast.LENGTH_LONG).show();
-//        }
+        }
+        else {
+            Toast.makeText(Cirugia_OBS_Add.this, "La fecha ya existe", Toast.LENGTH_LONG).show();
+        }
     }
     
 }

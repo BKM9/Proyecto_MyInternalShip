@@ -358,7 +358,7 @@ public class Funcionalidad_Cirugia extends DbHelper {
 
                     paciente.setHcirugia(list_CHCirugiaVO(camaslect));
                     paciente.setUci(list_CUCIVO(camaslect));
-                    paciente.setObservaciones(list_COBS(camaslect));
+                    paciente.setObservaciones(list_ObtenerOBS(camaslect));
                     paciente.setShock(list_TSHOCK(camaslect));
 
                     datos.add(paciente);
@@ -403,7 +403,7 @@ public class Funcionalidad_Cirugia extends DbHelper {
 
                     paciente.setHcirugia(list_CHCirugiaVO(camaslect));
                     paciente.setUci(list_CUCIVO(camaslect));
-                    paciente.setObservaciones(list_COBS(camaslect));
+                    paciente.setObservaciones(list_ObtenerOBS(camaslect));
                     paciente.setShock(list_TSHOCK(camaslect));
 
                 } while (cursor.moveToNext());
@@ -492,7 +492,7 @@ public class Funcionalidad_Cirugia extends DbHelper {
 
         return listdatos;
     }
-    public List<CObservacionesVO> list_COBS(String cama){
+    public List<CObservacionesVO> list_ObtenerOBS(String cama){
 
         List<CObservacionesVO> listdatos = new ArrayList<>();
 

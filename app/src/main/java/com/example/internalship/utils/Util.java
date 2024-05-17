@@ -314,14 +314,24 @@ public class Util {
                 }
             }
             return false;
+        }else if (listaObjetos != null && !listaObjetos.isEmpty() && listaObjetos.get(0) instanceof CObservacionesVO) {
+            List<CObservacionesVO> listaObservaciones = (List<CObservacionesVO>) listaObjetos;
+
+            for (CObservacionesVO obs : listaObservaciones) {
+                if (obs.getPrimeringreso().equals("1")) {
+                    Toast.makeText(context, "Ya registro Primer Ingreso", Toast.LENGTH_LONG).show();
+                    return true;
+                }
+            }
+            return false;
         }
         return true;
     }
 
-    public static String obtenerdiasenestadoporlistaObs(PacienteVO objetoPaciente) {
-        if (!objetoPaciente.getObservaciones().isEmpty()) {
-            if (objetoPaciente.getObservaciones().size() > 1) {
-                String cantidaddias = String.valueOf(Util.obtenerMaxNumDiasObs(objetoPaciente.getObservaciones()));
+    public static String obtenerdiasenestadoporlistaObs_Cirugia(List<CObservacionesVO> objetoPaciente) {
+        if (!objetoPaciente.isEmpty()) {
+            if (objetoPaciente.size() > 1) {
+                String cantidaddias = String.valueOf(Util.obtenerMaxNumDiasObs_Cirugia(objetoPaciente));
                 return cantidaddias;
             } else {
                 return "1";

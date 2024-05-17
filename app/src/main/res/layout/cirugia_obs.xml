@@ -14,8 +14,10 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -219,21 +221,12 @@
                             android:gravity="center_horizontal">
 
                             <Button
-                                android:id="@+id/buttonActualizarObservacionadd_Cirugia"
-                                android:layout_width="150dp"
-                                android:layout_height="49dp"
-                                android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="4dp"
-                                android:background="#F6C9AB"
-                                android:text="Actualizar"
-                                app:layout_constraintVertical_bias="0.0" />
-
-                            <Button
                                 android:id="@+id/btnAgregarObservacion_Cirugia"
                                 android:layout_width="150dp"
                                 android:layout_height="49dp"
                                 android:layout_marginStart="10dp"
-                                android:layout_marginBottom="4dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
                                 android:background="#F6C9AB"
                                 android:text="Agregar Obs" />
                         </LinearLayout>
