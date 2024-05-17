@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import androidx.annotation.NonNull;
+
 import com.example.internalship.vo.cirugiaVO.CHCirugiaVO;
 import com.example.internalship.vo.cirugiaVO.CObservacionesVO;
 import com.example.internalship.vo.cirugiaVO.CPacienteVO;
@@ -257,27 +259,30 @@ public class Funcionalidad_Cirugia extends DbHelper {
         return db.update(TABLE_PACIENTES_CIRUGIA_UCI, contentValues, "id_pac_uci = ?", new String[]{String.valueOf(id)});
     }
 
-    public int actualizar_Paciente_Cirugia_OBS(int id, String cama,String dia, String efisico, String evolucion,
-                                               String dx, String plan, String tratamiento,
-                                               String resLab, String resImagen, String procedimiento,
-                                               String horaingreso, String primeringreso) {
+    public int actualizar_Paciente_Cirugia_OBS(CObservacionesVO obs) {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("cama", cama);
-        contentValues.put("dia", dia);
-        contentValues.put("efisico", efisico);
-        contentValues.put("evolucion", evolucion);
-        contentValues.put("dx", dx);
-        contentValues.put("plann", plan);
-        contentValues.put("tratamiento", tratamiento);
-        contentValues.put("resLab", resLab);
-        contentValues.put("resImagen", resImagen);
-        contentValues.put("procedimiento", procedimiento);
-        contentValues.put("horaingreso", horaingreso);
-        contentValues.put("primeringreso", primeringreso);
+        ContentValues contentValues = getContentValues_OBS(obs);
 
-        return db.update(TABLE_PACIENTES_CIRUGIA_OBS, contentValues, "id = ?", new String[]{String.valueOf(id)});
+        return db.update(TABLE_PACIENTES_CIRUGIA_OBS, contentValues, "id_pac_obs = ?", new String[]{String.valueOf(obs.getId())});
+    }
+
+    @NonNull
+    private static ContentValues getContentValues_OBS(CObservacionesVO obs) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("cama", obs.getCama());
+        contentValues.put("dia", obs.getDia());
+        contentValues.put("efisico", obs.getEfisico());
+        contentValues.put("evolucion", obs.getEvolucion());
+        contentValues.put("dx", obs.getDx());
+        contentValues.put("plann", obs.getPlan());
+        contentValues.put("tratamiento", obs.getTratamiento());
+        contentValues.put("resLab", obs.getResLab());
+        contentValues.put("resImagen", obs.getResImagen());
+        contentValues.put("procedimiento", obs.getProcedimiento());
+        contentValues.put("horaingreso", obs.getHoraingreso());
+        contentValues.put("primeringreso", obs.getPrimeringreso());
+        return contentValues;
     }
 
     public int actualizar_Paciente_Cirugia_TSHOCK(int id, String cama,String dia, String efisico, String evolucion,
@@ -312,6 +317,12 @@ public class Funcionalidad_Cirugia extends DbHelper {
         db.delete(TABLE_PACIENTES_CIRUGIA_TSHOCK, "cama = ?", new String[]{cama});
 
         return db.delete(TABLE_PACIENTES_CIRUGIA, "id_pac = ?", new String[]{String.valueOf(id)});
+    }
+
+    public int eliminar_Cirugia_OBS(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        return db.delete(TABLE_PACIENTES_CIRUGIA_OBS, "id_pac_obs = ?", new String[]{id});
     }
 
     public List<CPacienteVO> listar_Cirugia_Paciente() {

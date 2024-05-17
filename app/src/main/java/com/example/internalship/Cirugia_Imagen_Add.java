@@ -145,10 +145,10 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
         });
 
         btnGuardar_Foto_Seleccionada_Cirugia.setOnClickListener(v -> {
-
             if (opcTipoImagen_Cirugia.getSelectedItem().toString().equals("--- Selecciona ---")) {
                 Toast.makeText(this, "Selecciona un tipo de imagen", Toast.LENGTH_SHORT).show();
-            } else {
+            }
+            else {
 
                 Alertas.showConfirmationDialog(Cirugia_Imagen_Add.this, "Confirmación", "¿Está seguro que desea agregar imagen?", new Alertas.ConfirmationListener() {
                     @Override

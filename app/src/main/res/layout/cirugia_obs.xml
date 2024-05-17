@@ -5,6 +5,243 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/fondo_main"
     tools:context=".iu.opciones.cirugia.obs.Cirugia_OBS">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/lbObsTitulo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:background="#FA9857"
+                            android:gravity="center_vertical"
+                            android:text="OBSERVACION"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/lbfechaIni"
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#F6C9AB"
+                            android:gravity="center_vertical"
+                            android:text="FECHA INGRESO: "
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat" />
+
+                        <EditText
+                            android:id="@+id/txtObsFecha_Cirugia"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+
+                            android:editable="false"
+                            android:gravity="center_vertical"
+                            android:hint="Ingresa Fecha"
+                            android:textAlignment="viewStart"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/lbhoraingresoobs"
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#F6C9AB"
+                            android:gravity="center_vertical"
+                            android:text="HORA INGRESO: "
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat" />
+
+                        <EditText
+                            android:id="@+id/txtObsHora_Cirugia"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+
+                            android:editable="false"
+                            android:gravity="center_vertical"
+                            android:hint="Hora de Ingreso"
+                            android:textAlignment="viewStart"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/lbnumdias"
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#F6C9AB"
+                            android:gravity="center_vertical"
+                            android:text="# DIAS: "
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat" />
+
+                        <EditText
+                            android:id="@+id/txtObsNumDias_Cirugia"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:editable="false"
+                            android:gravity="center_vertical"
+                            android:hint=""
+                            android:textAlignment="viewStart"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            tools:ignore="RtlCompat" />
+
+                        <Switch
+                            android:id="@+id/switchModificarObs_Cirugia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Actualizar"
+                            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                    </LinearLayout>
+                </TableRow>
+
+                <ScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="1dp">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayoutObsdetalees_Cirugia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:orientation="vertical"
+                        tools:context=".ActivityObservacion">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_horizontal">
+
+                            <Button
+                                android:id="@+id/buttonActualizarObservacionadd_Cirugia"
+                                android:layout_width="150dp"
+                                android:layout_height="49dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="4dp"
+                                android:background="#F6C9AB"
+                                android:text="Actualizar"
+                                app:layout_constraintVertical_bias="0.0" />
+
+                            <Button
+                                android:id="@+id/btnAgregarObservacion_Cirugia"
+                                android:layout_width="150dp"
+                                android:layout_height="49dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginBottom="4dp"
+                                android:background="#F6C9AB"
+                                android:text="Agregar Obs" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
+
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.InternalShip"
         tools:targetApi="31">
         <activity
+            android:name=".iu.opciones.cirugia.obs.Cirugia_OBS_Add"
+            android:windowSoftInputMode="adjustPan" /> <!-- android:windowSoftInputMode="adjustPan" AUTO AJUSTABLE -->
+        <activity
             android:name=".FullScreenImage"
             android:exported="false" />
         <activity
@@ -34,7 +37,7 @@
             android:exported="false" />
         <activity
             android:name=".iu.opciones.cirugia.obs.Cirugia_OBS"
-            android:exported="false" />
+            android:windowSoftInputMode="adjustPan" /> <!-- android:windowSoftInputMode="adjustPan" AUTO AJUSTABLE -->
         <activity
             android:name=".iu.opciones.cirugia.Cirugia_Add"
             android:windowSoftInputMode="adjustPan" /> <!-- android:windowSoftInputMode="adjustPan" AUTO AJUSTABLE -->
