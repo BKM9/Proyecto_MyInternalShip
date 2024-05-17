@@ -19,8 +19,12 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
@@ -46,6 +50,8 @@ import com.example.internalship.iu.menu.calendario.Menu_Agenda_Add;
 import com.example.internalship.iu.opciones.cirugia.Cirugia_Add;
 import com.example.internalship.utils.Alertas;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -220,7 +226,33 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == CODIGO_GALERIA) {
             imagenSeleccionada = data.getData();
-            imgFotoTomadaoEncontrada_Cirugia.setImageURI(imagenSeleccionada);
+
+            try {
+                final int MAX_SIZE = 1024;
+                InputStream input = getContentResolver().openInputStream(imagenSeleccionada);
+                BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
+                onlyBoundsOptions.inJustDecodeBounds = true;
+                BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
+                input.close();
+
+                int originalWidth = onlyBoundsOptions.outWidth;
+                int originalHeight = onlyBoundsOptions.outHeight;
+
+                int imageScale = Math.min(originalWidth/MAX_SIZE, originalHeight/MAX_SIZE);
+
+                BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+                bitmapOptions.inSampleSize = imageScale;
+                input = getContentResolver().openInputStream(imagenSeleccionada);
+                Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
+                input.close();
+
+                // Rotar la imagen si es necesario
+                bitmap = rotateImageIfRequired(bitmap, imagenSeleccionada);
+
+                imgFotoTomadaoEncontrada_Cirugia.setImageBitmap(bitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         if (resultCode == RESULT_OK && requestCode == CODIGO_CAMARA) {
@@ -228,6 +260,37 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
             imagenSeleccionada = uriImagen;
             imageView.setImageURI(uriImagen);
         }
+    }
+
+
+    private Bitmap rotateImageIfRequired(Bitmap img, Uri selectedImage) throws IOException {
+
+        InputStream input = this.getContentResolver().openInputStream(selectedImage);
+        ExifInterface ei;
+        if (Build.VERSION.SDK_INT > 23)
+            ei = new ExifInterface(input);
+        else
+            ei = new ExifInterface(selectedImage.getPath());
+
+        int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+
+        switch (orientation) {
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                return rotateImage(img, 90);
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                return rotateImage(img, 180);
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                return rotateImage(img, 270);
+            default:
+                return img;
+        }
+    }
+    private static Bitmap rotateImage(Bitmap img, int degree) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(degree);
+        Bitmap rotatedImg = Bitmap.createBitmap(img, 0, 0, img.getWidth(), img.getHeight(), matrix, true);
+        img.recycle();
+        return rotatedImg;
     }
 
     private void guardarImagen(String codPaciente, String tipoFoto) {
