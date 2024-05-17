@@ -49,6 +49,7 @@ public class Cirugia_Detalle extends AppCompatActivity {
     Button btnactualizar, btnaDELETE, btnPrueba;
     TextView txtidoculto;
     EditText textViewfi, textViewNombrePaciente, textViewanamnesis, textViewantecedentes, textViewdx;
+    String idPac, idCama;
     EditText textViewtto, textViewte, textViewplan, txthora, txthc, txtedad, twreevaluacion, txtcama;
     Funcionalidad_Cirugia funcionalidad_cirugia = new Funcionalidad_Cirugia(Cirugia_Detalle.this);
     private boolean isDeleting = false;
@@ -73,23 +74,45 @@ public class Cirugia_Detalle extends AppCompatActivity {
         if (bundle != null) {
             ObjetoPaciente = getIntent().getParcelableExtra("ObjetoPaciente");
 
-            assert ObjetoPaciente != null;
-            ObjetoPaciente.ordenarObservacionesPorFecha();
+            if(ObjetoPaciente != null){
+                ObjetoPaciente.ordenarObservacionesPorFecha();
 
-            txtcama.setText(ObjetoPaciente.getCama());
-            textViewNombrePaciente.setText(ObjetoPaciente.getNombre());
-            textViewanamnesis.setText(ObjetoPaciente.getAnamnesis());
-            textViewantecedentes.setText(ObjetoPaciente.getAntecedentes_qx_personales_alergias());
-            textViewfi.setText(ObjetoPaciente.getFi());
-            txthora.setText(ObjetoPaciente.getHoraingreso());
-            textViewdx.setText(ObjetoPaciente.getDx());
-            textViewtto.setText(ObjetoPaciente.getTto());
-            textViewte.setText(ObjetoPaciente.getTe());
-            textViewplan.setText(ObjetoPaciente.getPlan());
-            txthc.setText(ObjetoPaciente.getHc());
-            txtedad.setText(ObjetoPaciente.getEdad());
-            twreevaluacion.setText(ObjetoPaciente.getReevaluacion());
-            txtidoculto.setText(String.valueOf(ObjetoPaciente.getId()));
+                txtcama.setText(ObjetoPaciente.getCama());
+                textViewNombrePaciente.setText(ObjetoPaciente.getNombre());
+                textViewanamnesis.setText(ObjetoPaciente.getAnamnesis());
+                textViewantecedentes.setText(ObjetoPaciente.getAntecedentes_qx_personales_alergias());
+                textViewfi.setText(ObjetoPaciente.getFi());
+                txthora.setText(ObjetoPaciente.getHoraingreso());
+                textViewdx.setText(ObjetoPaciente.getDx());
+                textViewtto.setText(ObjetoPaciente.getTto());
+                textViewte.setText(ObjetoPaciente.getTe());
+                textViewplan.setText(ObjetoPaciente.getPlan());
+                txthc.setText(ObjetoPaciente.getHc());
+                txtedad.setText(ObjetoPaciente.getEdad());
+                twreevaluacion.setText(ObjetoPaciente.getReevaluacion());
+                txtidoculto.setText(String.valueOf(ObjetoPaciente.getId()));
+            }else{
+                idPac = bundle.getString("idPac");
+                idCama = bundle.getString("idCama");
+
+                ObjetoPaciente = funcionalidad_cirugia.buscar_Cirugia_Paciente(idPac, idCama);
+
+                txtcama.setText(ObjetoPaciente.getCama());
+                textViewNombrePaciente.setText(ObjetoPaciente.getNombre());
+                textViewanamnesis.setText(ObjetoPaciente.getAnamnesis());
+                textViewantecedentes.setText(ObjetoPaciente.getAntecedentes_qx_personales_alergias());
+                textViewfi.setText(ObjetoPaciente.getFi());
+                txthora.setText(ObjetoPaciente.getHoraingreso());
+                textViewdx.setText(ObjetoPaciente.getDx());
+                textViewtto.setText(ObjetoPaciente.getTto());
+                textViewte.setText(ObjetoPaciente.getTe());
+                textViewplan.setText(ObjetoPaciente.getPlan());
+                txthc.setText(ObjetoPaciente.getHc());
+                txtedad.setText(ObjetoPaciente.getEdad());
+                twreevaluacion.setText(ObjetoPaciente.getReevaluacion());
+                txtidoculto.setText(String.valueOf(ObjetoPaciente.getId()));
+
+            }
         }
     }
 

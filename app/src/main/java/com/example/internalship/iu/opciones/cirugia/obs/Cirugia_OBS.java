@@ -607,9 +607,12 @@ public class Cirugia_OBS extends AppCompatActivity {
         }
     }
 
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(Cirugia_OBS.this, Cirugia_Detalle.class);
+        intent.putExtra("idPac", idPac);
+        intent.putExtra("idCama", idCama);
         startActivity(intent);
         finish();
     }

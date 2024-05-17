@@ -1,5 +1,6 @@
 package com.example.internalship.db;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -370,6 +371,51 @@ public class Funcionalidad_Cirugia extends DbHelper {
 
         return datos;
     }
+
+    public CPacienteVO buscar_Cirugia_Paciente(String id, String cama) {
+        DbHelper dbHelper = new DbHelper(context);
+        CPacienteVO paciente = new CPacienteVO();
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_PACIENTES_CIRUGIA + " WHERE id_pac = ? AND cama = ?", new String[]{id,cama});
+
+        try {
+
+            if (cursor.moveToFirst()){
+                do {
+
+                    paciente.setId(cursor.getInt(0));
+                    paciente.setNombre(cursor.getString(1));
+                    String camaslect = cursor.getString(2);
+                    paciente.setCama(camaslect);
+                    paciente.setHc(cursor.getString(3));
+                    paciente.setEdad(cursor.getString(4));
+                    paciente.setAntecedentes_qx_personales_alergias(cursor.getString(5));
+                    paciente.setFi(cursor.getString(6));
+                    paciente.setHoraingreso(cursor.getString(7));
+                    paciente.setTe(cursor.getString(8));
+                    paciente.setAnamnesis(cursor.getString(9));
+                    paciente.setDx(cursor.getString(10));
+                    paciente.setTto(cursor.getString(11));
+                    paciente.setPlan(cursor.getString(12));
+                    paciente.setReevaluacion(cursor.getString(13));
+
+                    paciente.setHcirugia(list_CHCirugiaVO(camaslect));
+                    paciente.setUci(list_CUCIVO(camaslect));
+                    paciente.setObservaciones(list_COBS(camaslect));
+                    paciente.setShock(list_TSHOCK(camaslect));
+
+                } while (cursor.moveToNext());
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return paciente;
+    }
+
     public List<CHCirugiaVO> list_CHCirugiaVO(String cama){
         List<CHCirugiaVO> listdatos = new ArrayList<>();
 
