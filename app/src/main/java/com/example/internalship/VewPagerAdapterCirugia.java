@@ -21,19 +21,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.internalship.db.Funcionalidad_Cirugia;
-import com.example.internalship.db.Funcionalidad_Notas;
 import com.example.internalship.utils.Alertas;
 
 import java.io.File;
 import java.util.ArrayList;
 
-public class VPAdapter extends RecyclerView.Adapter<VPAdapter.ViewHolder> {
+public class VewPagerAdapterCirugia extends RecyclerView.Adapter<VewPagerAdapterCirugia.ViewHolder> {
 
     ArrayList<ViewPageItem> viewPageItems;
 
     private Context context;
 
-    public VPAdapter(ArrayList<ViewPageItem> viewPageItems, Context context) {
+    public VewPagerAdapterCirugia(ArrayList<ViewPageItem> viewPageItems, Context context) {
         this.viewPageItems = viewPageItems;
         this.context = context;
     }
@@ -95,7 +94,7 @@ public class VPAdapter extends RecyclerView.Adapter<VPAdapter.ViewHolder> {
                 File archivo = new File(rutaImagen);
                 Uri uriImagen = Uri.fromFile(archivo);
 
-                Intent intent = new Intent(v.getContext(), FullScreenImageActivity.class);
+                Intent intent = new Intent(v.getContext(), FullScreenImage.class);
                 intent.putExtra("IMAGE_ID", uriImagen.toString());
                 v.getContext().startActivity(intent);
             });

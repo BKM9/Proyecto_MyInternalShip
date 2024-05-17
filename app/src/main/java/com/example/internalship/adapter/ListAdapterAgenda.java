@@ -19,7 +19,7 @@ import com.example.internalship.R;
 import com.example.internalship.db.Funcionalidad_Actividades;
 import com.example.internalship.iu.menu.calendario.Menu_Agenda_Detalle;
 import com.example.internalship.utils.Alertas;
-import com.example.internalship.vo.actividadesvo.ActividadVO;
+import com.example.internalship.vo.activityVO.ActividadVO;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

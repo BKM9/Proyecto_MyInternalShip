@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.internalship.MainActivity;
 import com.example.internalship.R;
 import com.example.internalship.adapter.ListAdapterAgenda;
-import com.example.internalship.vo.actividadesvo.ActividadVO;
+import com.example.internalship.vo.activityVO.ActividadVO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class Menu_Agenda extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_menu_agenda);
+        setContentView(R.layout.menu_agenda);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

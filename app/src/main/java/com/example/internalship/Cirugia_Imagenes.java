@@ -74,7 +74,7 @@ public class Cirugia_Imagenes extends AppCompatActivity {
 
         viewPageItemsEcografia = cargarImagenesPaciente_Ecografia(String.valueOf(finalIdPac));
         if(!viewPageItemsEcografia.isEmpty()){
-            VPAdapter viewPagerAdapterEcografia = new VPAdapter(viewPageItemsEcografia, Cirugia_Imagenes.this);
+            VewPagerAdapterCirugia viewPagerAdapterEcografia = new VewPagerAdapterCirugia(viewPageItemsEcografia, Cirugia_Imagenes.this);
             viewPager2Ecogracia.setClipToPadding(false);
             viewPager2Ecogracia.setClipChildren(false);
             viewPager2Ecogracia.setOffscreenPageLimit(2);
@@ -86,7 +86,7 @@ public class Cirugia_Imagenes extends AppCompatActivity {
         viewPageItemsTomografia = cargarImagenesPaciente_Tomografia(String.valueOf(finalIdPac));
 
         if(!viewPageItemsTomografia.isEmpty()){
-            VPAdapter viewPagerAdapterTomografia = new VPAdapter(viewPageItemsTomografia, Cirugia_Imagenes.this);
+            VewPagerAdapterCirugia viewPagerAdapterTomografia = new VewPagerAdapterCirugia(viewPageItemsTomografia, Cirugia_Imagenes.this);
             viewPager2Resonancia.setClipToPadding(false);
             viewPager2Resonancia.setClipChildren(false);
             viewPager2Resonancia.setOffscreenPageLimit(2);
@@ -98,7 +98,7 @@ public class Cirugia_Imagenes extends AppCompatActivity {
         viewPageItemsRayosX = cargarImagenesPaciente_RayosX(String.valueOf(finalIdPac));
 
         if(!viewPageItemsRayosX.isEmpty()){
-            VPAdapter viewPagerAdapterRadiografia = new VPAdapter(viewPageItemsRayosX, Cirugia_Imagenes.this);
+            VewPagerAdapterCirugia viewPagerAdapterRadiografia = new VewPagerAdapterCirugia(viewPageItemsRayosX, Cirugia_Imagenes.this);
             viewPager2Radiografia.setClipToPadding(false);
             viewPager2Radiografia.setClipChildren(false);
             viewPager2Radiografia.setOffscreenPageLimit(2);
@@ -110,7 +110,7 @@ public class Cirugia_Imagenes extends AppCompatActivity {
         viewPageItemsExtras = cargarImagenesPaciente_Extras(String.valueOf(finalIdPac));
 
         if(!viewPageItemsExtras.isEmpty()){
-            VPAdapter viewPagerAdapterExtra = new VPAdapter(viewPageItemsExtras, Cirugia_Imagenes.this);
+            VewPagerAdapterCirugia viewPagerAdapterExtra = new VewPagerAdapterCirugia(viewPageItemsExtras, Cirugia_Imagenes.this);
             viewPager2Extras.setClipToPadding(false);
             viewPager2Extras.setClipChildren(false);
             viewPager2Extras.setOffscreenPageLimit(2);

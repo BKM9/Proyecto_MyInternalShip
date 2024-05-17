@@ -29,12 +29,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.internalship.MainActivity;
 import com.example.internalship.R;
-import com.example.internalship.VPAdapter;
-import com.example.internalship.ViewPageItem;
 import com.example.internalship.db.Funcionalidad_Cirugia;
 import com.example.internalship.iu.opciones.cirugia.hcirugia.Cirugia_HCirugia;
 import com.example.internalship.iu.opciones.cirugia.obs.Cirugia_OBS;
@@ -43,7 +40,6 @@ import com.example.internalship.iu.opciones.cirugia.uci.Cirugia_UCI;
 import com.example.internalship.utils.Alertas;
 import com.example.internalship.vo.cirugiaVO.CPacienteVO;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 

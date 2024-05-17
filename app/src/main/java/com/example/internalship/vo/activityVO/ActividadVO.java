@@ -1,4 +1,4 @@
-package com.example.internalship.vo.actividadesvo;
+package com.example.internalship.vo.activityVO;
 
 import android.os.Parcel;
 import android.os.Parcelable;

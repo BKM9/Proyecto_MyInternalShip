@@ -42,7 +42,7 @@ public class ListAdapterPacientesCirugia extends RecyclerView.Adapter<ListAdapte
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View view = mInflater.inflate(R.layout.list_element,null);
+        View view = mInflater.inflate(R.layout.carga_grilla_paciente,null);
         return new ViewHolder(view);
     }
 

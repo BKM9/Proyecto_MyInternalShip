@@ -27,7 +27,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.view.inputmethod.InputMethodManager;
@@ -45,16 +44,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.internalship.db.Funcionalidad_Cirugia;
-import com.example.internalship.iu.menu.calendario.Menu_Agenda;
-import com.example.internalship.iu.menu.calendario.Menu_Agenda_Add;
-import com.example.internalship.iu.opciones.cirugia.Cirugia_Add;
 import com.example.internalship.utils.Alertas;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -179,7 +174,7 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
         });
 
         imgFotoTomadaoEncontrada_Cirugia.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), FullScreenImageActivity.class);
+            Intent intent = new Intent(v.getContext(), FullScreenImage.class);
             intent.putExtra("IMAGE_ID", imagenSeleccionada.toString());
             v.getContext().startActivity(intent);
         });

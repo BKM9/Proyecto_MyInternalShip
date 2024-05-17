@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 
-import com.example.internalship.vo.actividadesvo.ActividadVO;
+import com.example.internalship.vo.activityVO.ActividadVO;
 
 import java.util.ArrayList;
 import java.util.List;

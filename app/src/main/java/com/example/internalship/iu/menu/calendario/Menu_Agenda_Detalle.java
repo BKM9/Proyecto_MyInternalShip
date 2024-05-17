@@ -27,7 +27,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.internalship.R;
 import com.example.internalship.db.Funcionalidad_Actividades;
 import com.example.internalship.utils.Alertas;
-import com.example.internalship.vo.actividadesvo.ActividadVO;
+import com.example.internalship.vo.activityVO.ActividadVO;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -49,7 +49,7 @@ public class Menu_Agenda_Detalle extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_menu_agenda_detalle);
+        setContentView(R.layout.menu_agenda_detalle);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

@@ -25,12 +25,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.internalship.db.DbHelper;
 import com.example.internalship.db.Funcionalidad_Actividades;
-import com.example.internalship.db.Funcionalidad_Cirugia;
 import com.example.internalship.iu.menu.calendario.Menu_Agenda;
 import com.example.internalship.iu.menu.notas.Menu_Notas;
 import com.example.internalship.iu.menu.terminos.Menu_Terminos_Condiciones;
 import com.example.internalship.iu.opciones.cirugia.Cirugia_Main;
-import com.example.internalship.vo.actividadesvo.ActividadVO;
+import com.example.internalship.vo.activityVO.ActividadVO;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
