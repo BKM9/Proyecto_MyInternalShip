@@ -95,7 +95,7 @@
                 android:background="@drawable/button_medicina_mas"
                 android:text="+"
                 android:textColor="@color/black"
-                android:textSize="15dp"
+                android:textSize="35dp"
                 android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
