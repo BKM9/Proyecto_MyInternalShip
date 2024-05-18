@@ -30,7 +30,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -70,7 +69,7 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
     private String nomImagen;
     private static final int CODIGO_GALERIA = 1;
     private static final int CODIGO_CAMARA = 2;
-    private ProgressBar BarprogressBar;
+    ProgressBar BarprogressBar;
 
     Funcionalidad_Cirugia funcionalidad_cirugia = new Funcionalidad_Cirugia(Cirugia_Imagen_Add.this);
 
@@ -158,27 +157,6 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
                 Alertas.showConfirmationDialog(Cirugia_Imagen_Add.this, "Confirmación", "¿Está seguro que desea agregar imagen?", new Alertas.ConfirmationListener() {
                     @Override
                     public void onConfirmed() {
-
-                        BarprogressBar.setVisibility(View.VISIBLE);
-
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    Thread.sleep(3000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-
-                                // Hide the ProgressBar
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        BarprogressBar.setVisibility(View.GONE);
-                                    }
-                                });
-                            }
-                        }).start();
 
                         String opc = opcTipoImagen_Cirugia.getSelectedItem().toString();
                         guardarImagen(String.valueOf(finalIdPac), opc);
@@ -315,7 +293,6 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
     }
 
     private void guardarImagen(String codPaciente, String tipoFoto) {
-
         nomImagen = codPaciente.concat("_Cirugia_").concat(tipoFoto).concat("_") + new SimpleDateFormat("ddMMyyyy_HHmmss", Locale.getDefault()).format(new Date()) + ".jpg";
 
         ContentValues values = new ContentValues();
@@ -326,6 +303,8 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
         Uri uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
         try {
+
+
 
             OutputStream out = getContentResolver().openOutputStream(uri);
             Bitmap bitmap = ((BitmapDrawable) imgFotoTomadaoEncontrada_Cirugia.getDrawable()).getBitmap();

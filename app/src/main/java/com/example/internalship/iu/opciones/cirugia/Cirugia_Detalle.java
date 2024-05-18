@@ -1,5 +1,10 @@
 package com.example.internalship.iu.opciones.cirugia;
 
+import static com.example.internalship.utils.Constantes.RUTA_ALMACENAMIENTO_IMG_RAIZ;
+import static com.example.internalship.utils.Constantes.TIPO_ECOGRAFIA;
+import static com.example.internalship.utils.Constantes.TIPO_EXTRA;
+import static com.example.internalship.utils.Constantes.TIPO_RAYOS_X;
+import static com.example.internalship.utils.Constantes.TIPO_TOMOGRAFIA;
 import static com.example.internalship.utils.Util.fechaVal;
 
 import android.annotation.SuppressLint;
@@ -21,6 +26,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,8 +45,11 @@ import com.example.internalship.iu.opciones.cirugia.tshock.Cirugia_TSHOCK;
 import com.example.internalship.iu.opciones.cirugia.uci.Cirugia_UCI;
 import com.example.internalship.utils.Alertas;
 import com.example.internalship.vo.cirugiaVO.CPacienteVO;
+import com.example.internalship.vo.photo.foto;
 
+import java.io.File;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class Cirugia_Detalle extends AppCompatActivity {
@@ -52,7 +61,7 @@ public class Cirugia_Detalle extends AppCompatActivity {
     String idPac, idCama;
     EditText textViewtto, textViewte, textViewplan, txthora, txthc, txtedad, twreevaluacion, txtcama;
     Funcionalidad_Cirugia funcionalidad_cirugia = new Funcionalidad_Cirugia(Cirugia_Detalle.this);
-    private boolean isDeleting = false;
+    private ProgressBar BarprogressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +85,9 @@ public class Cirugia_Detalle extends AppCompatActivity {
 
             if(ObjetoPaciente != null){
                 ObjetoPaciente.ordenarObservacionesPorFecha();
+
+                idPac = String.valueOf(ObjetoPaciente.getId());
+                idCama = ObjetoPaciente.getCama();
 
                 txtcama.setText(ObjetoPaciente.getCama());
                 textViewNombrePaciente.setText(ObjetoPaciente.getNombre());
@@ -131,7 +143,7 @@ public class Cirugia_Detalle extends AppCompatActivity {
         txtedad = findViewById(R.id.txtedaddeta_Cirugia);
         twreevaluacion = findViewById(R.id.twreevaluacion_Cirugia);
         txtidoculto = findViewById(R.id.txtidoculto_Cirugia);
-
+        BarprogressBar = findViewById(R.id.progressBar_pac_cirugia_delete);
         btnactualizar = findViewById(R.id.btnActualizar_Cirugia);
         btnaDELETE = findViewById(R.id.btnEliminar_Cirugia);
         btnPrueba = findViewById(R.id.btnDesplegableCirugia);
@@ -351,7 +363,8 @@ public class Cirugia_Detalle extends AppCompatActivity {
         Alertas.showConfirmationDialog(Cirugia_Detalle.this, "Confirmación", "¿Está seguro que desea eliminar datos del paciente?", new Alertas.ConfirmationListener() {
             @Override
             public void onConfirmed() {
-                DeletePaciente();
+                deletePaciente();
+                deleteImg();
             }
 
             @Override
@@ -378,7 +391,7 @@ public class Cirugia_Detalle extends AppCompatActivity {
         });
     }
 
-    private void DeletePaciente() {
+    private void deletePaciente() {
         ProgressDialog progressDialog = ProgressDialog.show(this,
                 "Elimiando Paciente",
                 "Espera por Favor",
@@ -400,6 +413,85 @@ public class Cirugia_Detalle extends AppCompatActivity {
             progressDialog.dismiss();
             Toast.makeText(Cirugia_Detalle.this, "Error al eliminar", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void deleteImg(){
+
+        BarprogressBar.setVisibility(View.VISIBLE);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+
+                    List<foto> list_Fotos = funcionalidad_cirugia.list_Fotos(idPac, TIPO_RAYOS_X );
+
+                    if(!list_Fotos.isEmpty()){
+                        for (foto foto : list_Fotos) {
+
+                            String rutaImagen = RUTA_ALMACENAMIENTO_IMG_RAIZ.concat(foto.getUrl());
+                            File archivo = new File(rutaImagen);
+                            archivo.delete();
+
+                            funcionalidad_cirugia.eliminar_Foto(String.valueOf(foto.getId()));
+                        }
+                    }
+
+                    list_Fotos = funcionalidad_cirugia.list_Fotos(idPac,TIPO_ECOGRAFIA);
+
+                    if(!list_Fotos.isEmpty()){
+                        for (foto foto : list_Fotos) {
+
+                            String rutaImagen = RUTA_ALMACENAMIENTO_IMG_RAIZ.concat(foto.getUrl());
+                            File archivo = new File(rutaImagen);
+                            archivo.delete();
+
+                            funcionalidad_cirugia.eliminar_Foto(String.valueOf(foto.getId()));
+                        }
+                    }
+
+                    list_Fotos = funcionalidad_cirugia.list_Fotos(idPac,TIPO_TOMOGRAFIA);
+
+                    if(!list_Fotos.isEmpty()){
+                        for (foto foto : list_Fotos) {
+
+                            String rutaImagen = RUTA_ALMACENAMIENTO_IMG_RAIZ.concat(foto.getUrl());
+                            File archivo = new File(rutaImagen);
+                            archivo.delete();
+
+                            funcionalidad_cirugia.eliminar_Foto(String.valueOf(foto.getId()));
+                        }
+                    }
+
+                    list_Fotos = funcionalidad_cirugia.list_Fotos(idPac, TIPO_EXTRA);
+
+                    if(!list_Fotos.isEmpty()){
+                        for (foto foto : list_Fotos) {
+
+                            String rutaImagen = RUTA_ALMACENAMIENTO_IMG_RAIZ.concat(foto.getUrl());
+                            File archivo = new File(rutaImagen);
+                            archivo.delete();
+
+                            funcionalidad_cirugia.eliminar_Foto(String.valueOf(foto.getId()));
+                        }
+                    }
+
+
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                // Hide the ProgressBar
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        BarprogressBar.setVisibility(View.GONE);
+                    }
+                });
+            }
+        }).start();
+
     }
 
     public void onBackPressed() {
