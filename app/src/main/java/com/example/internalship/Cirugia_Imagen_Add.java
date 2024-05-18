@@ -11,6 +11,7 @@ import static com.example.internalship.utils.Util.fechaVal;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -29,11 +30,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -67,6 +70,7 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
     private String nomImagen;
     private static final int CODIGO_GALERIA = 1;
     private static final int CODIGO_CAMARA = 2;
+    private ProgressBar BarprogressBar;
 
     Funcionalidad_Cirugia funcionalidad_cirugia = new Funcionalidad_Cirugia(Cirugia_Imagen_Add.this);
 
@@ -100,6 +104,7 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
         btnGuardar_Foto_Seleccionada_Cirugia = findViewById(R.id.btnGuardar_Foto_Seleccionada_Cirugia);
         TituloFoto_Add_Cirugia = findViewById(R.id.TituloFoto_Add_Cirugia);
         DescripcionFoto_Add_Cirugia = findViewById(R.id.DescripcionFoto_Add_Cirugia);
+        BarprogressBar = findViewById(R.id.progressBar_img_cirugia_add);
 
 
         TituloFoto_Add_Cirugia.setOnClickListener(v -> {
@@ -153,6 +158,27 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
                 Alertas.showConfirmationDialog(Cirugia_Imagen_Add.this, "Confirmación", "¿Está seguro que desea agregar imagen?", new Alertas.ConfirmationListener() {
                     @Override
                     public void onConfirmed() {
+
+                        BarprogressBar.setVisibility(View.VISIBLE);
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(3000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
+                                // Hide the ProgressBar
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        BarprogressBar.setVisibility(View.GONE);
+                                    }
+                                });
+                            }
+                        }).start();
 
                         String opc = opcTipoImagen_Cirugia.getSelectedItem().toString();
                         guardarImagen(String.valueOf(finalIdPac), opc);
@@ -257,7 +283,6 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
         }
     }
 
-
     private Bitmap rotateImageIfRequired(Bitmap img, Uri selectedImage) throws IOException {
 
         InputStream input = this.getContentResolver().openInputStream(selectedImage);
@@ -280,6 +305,7 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
                 return img;
         }
     }
+
     private static Bitmap rotateImage(Bitmap img, int degree) {
         Matrix matrix = new Matrix();
         matrix.postRotate(degree);
@@ -289,6 +315,7 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
     }
 
     private void guardarImagen(String codPaciente, String tipoFoto) {
+
         nomImagen = codPaciente.concat("_Cirugia_").concat(tipoFoto).concat("_") + new SimpleDateFormat("ddMMyyyy_HHmmss", Locale.getDefault()).format(new Date()) + ".jpg";
 
         ContentValues values = new ContentValues();
@@ -299,11 +326,13 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
         Uri uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
         try {
+
             OutputStream out = getContentResolver().openOutputStream(uri);
             Bitmap bitmap = ((BitmapDrawable) imgFotoTomadaoEncontrada_Cirugia.getDrawable()).getBitmap();
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
             out.flush();
             out.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
