@@ -6,11 +6,6 @@
         android:title="Notas" />
 
     <item
-        android:id="@+id/navmenu2"
-        android:icon="@drawable/exportaciones"
-        android:title="Exportaciones" />
-
-    <item
         android:id="@+id/navmenu3"
         android:icon="@drawable/galeria"
         android:title="Galeria" />
@@ -34,4 +29,14 @@
         android:id="@+id/nav_shere"
         android:icon="@drawable/share"
         android:title="Share" />
+
+    <item
+        android:id="@+id/nav_helpme"
+        android:icon="@drawable/ayuda"
+        android:title="Ayuda" />
+
+    <item
+        android:id="@+id/nav_sincronizacion"
+        android:icon="@drawable/sincronizar"
+        android:title="Sincronizacion" />" />
 </menu>
