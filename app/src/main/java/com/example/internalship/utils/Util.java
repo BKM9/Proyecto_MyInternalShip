@@ -1,8 +1,12 @@
 package com.example.internalship.utils;
 
+import static com.example.internalship.utils.Constantes.FORMATO_FECHA_DDMMYYYY;
+import static com.example.internalship.utils.Constantes.NO_INFORMACION;
+
 import android.content.Context;
 import android.widget.Toast;
 
+import com.example.internalship.vo.ObjetoVO;
 import com.example.internalship.vo.cirugiaVO.CHCirugiaVO;
 import com.example.internalship.vo.cirugiaVO.CObservacionesVO;
 import com.example.internalship.vo.cirugiaVO.CPacienteVO;
@@ -33,6 +37,15 @@ public class Util {
 
     public static Boolean existefechaendatosalmacenadosOBS(List<ObservacionesVO> lista, String valorbuscado) {
         for (ObservacionesVO obs : lista) {
+            if (obs.getDia().equals(valorbuscado)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Boolean existefechaendatosalmacenados(List<ObjetoVO> lista, String valorbuscado) {
+        for (ObjetoVO obs : lista) {
             if (obs.getDia().equals(valorbuscado)) {
                 return true;
             }
@@ -132,7 +145,7 @@ public class Util {
 
         String fechaFinStr = listaObjetos.get(listaObjetos.size() - 1).getDia();
 
-        DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat formato = new SimpleDateFormat(FORMATO_FECHA_DDMMYYYY);
         try {
             Date fechaInicio = formato.parse(fechaInicioStr);
             Date fechaFin = formato.parse(fechaFinStr);
@@ -328,6 +341,43 @@ public class Util {
         return true;
     }
 
+    public static String obtenerdiasenestadoporlista(List<ObjetoVO> objetoPaciente) {
+        if (!objetoPaciente.isEmpty()) {
+            if (objetoPaciente.size() > 1) {
+                String cantidaddias = String.valueOf(Util.obtenerMaxNumDias(objetoPaciente));
+                return cantidaddias;
+            } else {
+                return "1";
+            }
+        } else {
+            return "No info";
+        }
+    }
+
+    public static long obtenerMaxNumDias(List<ObjetoVO> listaObjetos) {
+        String fechaInicioStr = listaObjetos.get(0).getDia();
+
+        String fechaFinStr = listaObjetos.get(listaObjetos.size() - 1).getDia();
+
+        DateFormat formato = new SimpleDateFormat(FORMATO_FECHA_DDMMYYYY);
+        try {
+            Date fechaInicio = formato.parse(fechaInicioStr);
+            Date fechaFin = formato.parse(fechaFinStr);
+
+            long diferenciaEnMs = fechaFin.getTime() - fechaInicio.getTime();
+
+            long dias = diferenciaEnMs / (1000 * 60 * 60 * 24);
+
+            System.out.println("La cantidad de días entre las fechas es: " + dias);
+
+            return dias;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return 1;
+    }
+
     public static String obtenerdiasenestadoporlistaObs_Cirugia(List<CObservacionesVO> objetoPaciente) {
         if (!objetoPaciente.isEmpty()) {
             if (objetoPaciente.size() > 1) {
@@ -337,7 +387,7 @@ public class Util {
                 return "1";
             }
         } else {
-            return "No info";
+            return NO_INFORMACION;
         }
     }
 
@@ -350,7 +400,7 @@ public class Util {
                 return "1";
             }
         } else {
-            return "No info";
+            return NO_INFORMACION;
         }
     }
 
@@ -383,7 +433,7 @@ public class Util {
 
         String fechaFinStr = listaObjetos.get(listaObjetos.size() - 1).getDia();
 
-        DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat formato = new SimpleDateFormat(FORMATO_FECHA_DDMMYYYY);
         try {
             Date fechaInicio = formato.parse(fechaInicioStr);
             Date fechaFin = formato.parse(fechaFinStr);
@@ -558,7 +608,7 @@ public class Util {
                 return "1";
             }
         } else {
-            return "No info";
+            return NO_INFORMACION;
         }
     }
 
@@ -571,7 +621,7 @@ public class Util {
                 return "1";
             }
         } else {
-            return "No info";
+            return NO_INFORMACION;
         }
     }
 

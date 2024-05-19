@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/fondo_main"
-    tools:context=".iu.opciones.cirugia.obs.Cirugia_OBS_Add">
+    tools:context=".iu.opciones.cirugia.hcirugia.Cirugia_HCirugia_Add">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,16 +31,16 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/TV_TITULO_OBS_CIRUGIA_ADD"
+                            android:id="@+id/TV_TITULO_HCIRUGIA_CIRUGIA_ADD"
                             android:layout_width="wrap_content"
                             android:layout_height="50sp"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:layout_weight="1"
-                            android:background="#FA9857"
+                            android:background="#39FBFB"
                             android:gravity="center_vertical"
-                            android:text="OBSERVACION CAMA : 512"
+                            android:text=" CAMA : 512"
                             android:textAlignment="center"
                             android:textColor="#000000"
                             android:textSize="15sp"
@@ -73,7 +72,7 @@
                             tools:ignore="RtlCompat" />
 
                         <EditText
-                            android:id="@+id/ET_FECHA_OBS_CIRUGIA_ADD"
+                            android:id="@+id/ET_FECHA_HCIRUGIA_CIRUGIA_ADD"
                             android:layout_width="match_parent"
                             android:layout_height="50sp"
                             android:layout_marginEnd="10dp"
@@ -98,7 +97,7 @@
                         android:orientation="horizontal">
 
                         <Switch
-                            android:id="@+id/SWITCH_PRIMERAVEZ_OBS_CIRUGIA_ADD"
+                            android:id="@+id/SWITCH_PRIMERAVEZ_HCIRUGIA_CIRUGIA_ADD"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -122,7 +121,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/TV_HORA_OBS_CIRUGIA_ADD"
+                            android:id="@+id/TV_HORA_HCIRUGIA_CIRUGIA_ADD"
                             android:layout_width="match_parent"
                             android:layout_height="50sp"
                             android:layout_marginStart="10dp"
@@ -136,7 +135,7 @@
                             android:visibility="gone"/>
 
                         <EditText
-                            android:id="@+id/ET_HORA_OBS_CIRUGIA_ADD"
+                            android:id="@+id/ET_HORA_HCIRUGIA_CIRUGIA_ADD"
                             android:layout_width="match_parent"
                             android:layout_height="50sp"
                             android:layout_marginEnd="10dp"
@@ -168,7 +167,7 @@
                             android:layout_marginEnd="10dp"
                             android:layout_weight="1"
                             android:text="1. Examen físico"
-                            android:background="#FFB98B"
+                            android:background="#CBFEFE"
                             android:gravity="center_vertical"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
@@ -187,7 +186,7 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
                         <EditText
-                            android:id="@+id/ET_EFISICO_OBS_CIRUGIA_ADD"
+                            android:id="@+id/ET_EFISICO_HCIRUGIA_CIRUGIA_ADD"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -219,7 +218,7 @@
                             android:layout_marginEnd="10dp"
                             android:layout_weight="1"
                             android:text="2. Evolución"
-                            android:background="#FFB98B"
+                            android:background="#CBFEFE"
                             android:gravity="center_vertical"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
@@ -238,7 +237,7 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
                         <EditText
-                            android:id="@+id/ET_EVOLUCION_OBS_CIRUGIA_ADD"
+                            android:id="@+id/ET_EVOLUCION_HCIRUGIA_CIRUGIA_ADD"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -270,7 +269,7 @@
                             android:layout_marginEnd="10dp"
                             android:layout_weight="1"
                             android:text="3. DX"
-                            android:background="#FFB98B"
+                            android:background="#CBFEFE"
                             android:gravity="center_vertical"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
@@ -289,7 +288,7 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
                         <EditText
-                            android:id="@+id/ET_DX_OBS_CIRUGIA_ADD"
+                            android:id="@+id/ET_DX_HCIRUGIA_CIRUGIA_ADD"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -321,7 +320,7 @@
                             android:layout_marginEnd="10dp"
                             android:layout_weight="1"
                             android:text="4. Plan"
-                            android:background="#FFB98B"
+                            android:background="#CBFEFE"
                             android:gravity="center_vertical"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
@@ -340,7 +339,7 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
                         <EditText
-                            android:id="@+id/ET_PLAN_OBS_CIRUGIA_ADD"
+                            android:id="@+id/ET_PLAN_HCIRUGIA_CIRUGIA_ADD"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -372,7 +371,7 @@
                             android:layout_marginEnd="10dp"
                             android:layout_weight="1"
                             android:text="5. Tratamiento"
-                            android:background="#FFB98B"
+                            android:background="#CBFEFE"
                             android:gravity="center_vertical"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
@@ -391,7 +390,7 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
                         <EditText
-                            android:id="@+id/ET_TRATAMIENTO_OBS_CIRUGIA_ADD"
+                            android:id="@+id/ET_TRATAMIENTO_HCIRUGIA_CIRUGIA_ADD"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -424,7 +423,7 @@
                             android:layout_marginEnd="10dp"
                             android:layout_weight="1"
                             android:text="6. Resultados de laboratorio"
-                            android:background="#FFB98B"
+                            android:background="#CBFEFE"
                             android:gravity="center_vertical"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
@@ -443,7 +442,7 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
                         <EditText
-                            android:id="@+id/ET_RESLAB_OBS_CIRUGIA_ADD"
+                            android:id="@+id/ET_RESLAB_HCIRUGIA_CIRUGIA_ADD"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -476,7 +475,7 @@
                             android:layout_marginEnd="10dp"
                             android:layout_weight="1"
                             android:text="7. Resultados de imágenes"
-                            android:background="#FFB98B"
+                            android:background="#CBFEFE"
                             android:gravity="center_vertical"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
@@ -495,7 +494,7 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
                         <EditText
-                            android:id="@+id/ET_RESIMAGEN_OBS_CIRUGIA_ADD"
+                            android:id="@+id/ET_RESIMAGEN_HCIRUGIA_CIRUGIA_ADD"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -528,7 +527,7 @@
                             android:layout_marginEnd="10dp"
                             android:layout_weight="1"
                             android:text="8. Procedimientos"
-                            android:background="#FFB98B"
+                            android:background="#CBFEFE"
                             android:gravity="center_vertical"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
@@ -547,7 +546,7 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
                         <EditText
-                            android:id="@+id/ET_PROCEDIMIENTO_OBS_CIRUGIA_ADD"
+                            android:id="@+id/ET_PROCEDIMIENTO_HCIRUGIA_CIRUGIA_ADD"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -573,7 +572,7 @@
                         android:layout_marginBottom="20dp">
 
                         <Button
-                            android:id="@+id/BTN_AGREGAR_OBS_CIRUGIA_ADD"
+                            android:id="@+id/BTN_AGREGAR_HCIRUGIA_CIRUGIA_ADD"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginStart="10dp"
@@ -590,7 +589,7 @@
                             tools:ignore="RtlCompat,TextSizeCheck" />
 
                         <Button
-                            android:id="@+id/BTN_CANCELAR_OBS_CIRUGIA_ADD"
+                            android:id="@+id/BTN_CANCELAR_HCIRUGIA_CIRUGIA_ADD"
                             android:layout_width="92dp"
                             android:layout_height="match_parent"
                             android:layout_marginStart="10dp"
@@ -611,5 +610,5 @@
             </TableLayout>
         </LinearLayout>
     </ScrollView>
-
+    
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -177,7 +177,8 @@ public class Cirugia_Detalle extends AppCompatActivity {
 
                             Intent intent = new Intent(Cirugia_Detalle.this, Cirugia_UCI.class);
                             Bundle bundle = new Bundle();
-                            bundle.putParcelable("ObjetoPaciente", (Parcelable) ObjetoPaciente);
+                            bundle.putString("idPac", String.valueOf(ObjetoPaciente.getId()));
+                            bundle.putString("idCama", ObjetoPaciente.getCama());
                             intent.putExtras(bundle);
                             startActivity(intent);
 
@@ -186,7 +187,8 @@ public class Cirugia_Detalle extends AppCompatActivity {
 
                             Intent intent = new Intent(Cirugia_Detalle.this, Cirugia_TSHOCK.class);
                             Bundle bundle = new Bundle();
-                            bundle.putParcelable("ObjetoPaciente", (Parcelable) ObjetoPaciente);
+                            bundle.putString("idPac", String.valueOf(ObjetoPaciente.getId()));
+                            bundle.putString("idCama", ObjetoPaciente.getCama());
                             intent.putExtras(bundle);
                             startActivity(intent);
 
@@ -195,7 +197,8 @@ public class Cirugia_Detalle extends AppCompatActivity {
 
                             Intent intent = new Intent(Cirugia_Detalle.this, Cirugia_HCirugia.class);
                             Bundle bundle = new Bundle();
-                            bundle.putParcelable("ObjetoPaciente", (Parcelable) ObjetoPaciente);
+                            bundle.putString("idPac", String.valueOf(ObjetoPaciente.getId()));
+                            bundle.putString("idCama", ObjetoPaciente.getCama());
                             intent.putExtras(bundle);
                             startActivity(intent);
 

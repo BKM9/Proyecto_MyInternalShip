@@ -86,7 +86,7 @@
                             tools:ignore="RtlCompat" />
 
                         <EditText
-                            android:id="@+id/txtObsFecha_Cirugia"
+                            android:id="@+id/ET_FECHA_OBS_CIRUGIA"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -131,7 +131,7 @@
                             tools:ignore="RtlCompat" />
 
                         <EditText
-                            android:id="@+id/txtObsHora_Cirugia"
+                            android:id="@+id/ET_HORA_OBS_CIRUGIA"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -176,7 +176,7 @@
                             tools:ignore="RtlCompat" />
 
                         <EditText
-                            android:id="@+id/txtObsNumDias_Cirugia"
+                            android:id="@+id/ET_DIAS_OBS_CIRUGIA"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -191,7 +191,7 @@
                             tools:ignore="RtlCompat" />
 
                         <Switch
-                            android:id="@+id/switchModificarObs_Cirugia"
+                            android:id="@+id/SWITCH_CAMPOS_OBS_CIRUGIA"
                             android:layout_width="140dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -211,7 +211,7 @@
                     android:padding="1dp">
 
                     <LinearLayout
-                        android:id="@+id/linearLayoutObsdetalees_Cirugia"
+                        android:id="@+id/LY_DATA_OBS_CIRUGIA"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
@@ -225,14 +225,14 @@
                             android:gravity="center_horizontal">
 
                             <Button
-                                android:id="@+id/btnAgregarObservacion_Cirugia"
-                                android:layout_width="150dp"
+                                android:id="@+id/BT_AGREGAR_OBS_CIRUGIA"
+                                android:layout_width="210dp"
                                 android:layout_height="49dp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:background="#F6C9AB"
-                                android:text="Agregar Obs" />
+                                android:text="Agregar Observacion" />
                         </LinearLayout>
                     </LinearLayout>
                 </ScrollView>

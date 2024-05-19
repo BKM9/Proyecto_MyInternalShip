@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.NonNull;
 
+import com.example.internalship.vo.ObjetoVO;
 import com.example.internalship.vo.cirugiaVO.CHCirugiaVO;
 import com.example.internalship.vo.cirugiaVO.CObservacionesVO;
 import com.example.internalship.vo.cirugiaVO.CPacienteVO;
@@ -260,6 +261,157 @@ public class Funcionalidad_Cirugia extends DbHelper {
         return db.update(TABLE_PACIENTES_CIRUGIA_UCI, contentValues, "id_pac_uci = ?", new String[]{String.valueOf(id)});
     }
 
+    public int eliminar_Cirugia_TIPO(String id, String tipo){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        switch (tipo){
+            case "OBS":
+                return db.delete(TABLE_PACIENTES_CIRUGIA_OBS, "id_pac_obs = ?", new String[]{id});
+            case "CHCIRUGIA":
+                return db.delete(TABLE_PACIENTES_CIRUGIA_HCIRUGIA, "id_pac_hcirugia = ?", new String[]{id});
+            case "UCI":
+                return db.delete(TABLE_PACIENTES_CIRUGIA_UCI, "id_pac_uci = ?", new String[]{id});
+            case "TSHOCK":
+                return db.delete(TABLE_PACIENTES_CIRUGIA_TSHOCK, "id_pac_tshock = ?", new String[]{id});
+            default:
+                return -1;
+        }
+    }
+
+    public List<ObjetoVO> list_Obtener(String cama, String tipo){
+
+        List<ObjetoVO> listdatos = new ArrayList<>();
+
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = null;
+
+        switch (tipo){
+            case "OBS":
+                cursor = db.rawQuery("SELECT * FROM " + TABLE_PACIENTES_CIRUGIA_OBS + " WHERE cama = ?", new String[]{cama});
+                break;
+            case "CHCIRUGIA":
+                cursor = db.rawQuery("SELECT * FROM " + TABLE_PACIENTES_CIRUGIA_HCIRUGIA + " WHERE cama = ?", new String[]{cama});
+                break;
+            case "UCI":
+                cursor = db.rawQuery("SELECT * FROM " + TABLE_PACIENTES_CIRUGIA_UCI + " WHERE cama = ?", new String[]{cama});
+                break;
+            case "TSHOCK":
+                cursor = db.rawQuery("SELECT * FROM " + TABLE_PACIENTES_CIRUGIA_TSHOCK + " WHERE cama = ?", new String[]{cama});
+                break;
+        }
+
+        try {
+
+            if (cursor.moveToFirst()){
+                do {
+
+                    ObjetoVO datos = new ObjetoVO();
+                    datos.setId(cursor.getInt(0));
+                    datos.setCama(cursor.getString(1));
+                    datos.setDia(cursor.getString(2));
+                    datos.setEfisico(cursor.getString(3));
+                    datos.setEvolucion(cursor.getString(4));
+                    datos.setDx(cursor.getString(5));
+                    datos.setPlan(cursor.getString(6));
+                    datos.setTratamiento(cursor.getString(7));
+                    datos.setResLab(cursor.getString(8));
+                    datos.setResImagen(cursor.getString(9));
+                    datos.setProcedimiento(cursor.getString(10));
+                    datos.setHoraingreso(cursor.getString(11));
+                    datos.setPrimeringreso(cursor.getString(12));
+
+                    listdatos.add(datos);
+                } while (cursor.moveToNext());
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public int actualizar_Paciente_Cirugia(ObjetoVO obs, String tipo) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = getContentValues(obs);
+
+        switch (tipo){
+            case "OBS":
+                return db.update(TABLE_PACIENTES_CIRUGIA_OBS, contentValues, "id_pac_obs = ?", new String[]{String.valueOf(obs.getId())});
+            case "CHCIRUGIA":
+                return db.update(TABLE_PACIENTES_CIRUGIA_HCIRUGIA, contentValues, "id_pac_hcirugia = ?", new String[]{String.valueOf(obs.getId())});
+            case "UCI":
+                return db.update(TABLE_PACIENTES_CIRUGIA_UCI, contentValues, "id_pac_uci = ?", new String[]{String.valueOf(obs.getId())});
+            case "TSHOCK":
+                return db.update(TABLE_PACIENTES_CIRUGIA_TSHOCK, contentValues, "id_pac_tshock = ?", new String[]{String.valueOf(obs.getId())});
+            default:
+                return 0;
+        }
+
+    }
+
+    public long insertar_Cirugia_TIPOTABLA(ObjetoVO obs, String tipo) {
+
+        long id = 0;
+        try {
+
+            DbHelper dbHelper = new DbHelper(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            ContentValues contentValues = getContentValues(obs);
+
+            switch (tipo){
+                case "OBS":
+
+                    id = db.insert(TABLE_PACIENTES_CIRUGIA_OBS, null, contentValues);
+                    return id;
+
+                case "CHCIRUGIA":
+
+                    id = db.insert(TABLE_PACIENTES_CIRUGIA_HCIRUGIA, null, contentValues);
+                    return id;
+
+                case "UCI":
+
+                    id = db.insert(TABLE_PACIENTES_CIRUGIA_UCI, null, contentValues);
+                    return id;
+
+                case "TSHOCK":
+
+                    id = db.insert(TABLE_PACIENTES_CIRUGIA_TSHOCK, null, contentValues);
+                    return id;
+
+                default:
+                    return 0;
+            }
+
+
+        } catch (Exception e){
+            e.toString();
+        }
+        return id;
+    }
+    @NonNull
+    private static ContentValues getContentValues(ObjetoVO obs) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("cama", obs.getCama());
+        contentValues.put("dia", obs.getDia());
+        contentValues.put("efisico", obs.getEfisico());
+        contentValues.put("evolucion", obs.getEvolucion());
+        contentValues.put("dx", obs.getDx());
+        contentValues.put("plann", obs.getPlan());
+        contentValues.put("tratamiento", obs.getTratamiento());
+        contentValues.put("resLab", obs.getResLab());
+        contentValues.put("resImagen", obs.getResImagen());
+        contentValues.put("procedimiento", obs.getProcedimiento());
+        contentValues.put("horaingreso", obs.getHoraingreso());
+        contentValues.put("primeringreso", obs.getPrimeringreso());
+        return contentValues;
+    }
+
+
     public int actualizar_Paciente_Cirugia_OBS(CObservacionesVO obs) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -492,6 +644,7 @@ public class Funcionalidad_Cirugia extends DbHelper {
 
         return listdatos;
     }
+
     public List<CObservacionesVO> list_ObtenerOBS(String cama){
 
         List<CObservacionesVO> listdatos = new ArrayList<>();

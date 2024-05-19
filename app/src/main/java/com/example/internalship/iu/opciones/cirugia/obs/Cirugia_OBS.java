@@ -1,6 +1,9 @@
 package com.example.internalship.iu.opciones.cirugia.obs;
 
 import static com.example.internalship.utils.Constantes.ALETAR_OPERACION_CANCELADA;
+import static com.example.internalship.utils.Constantes.MOSTRAR_CAMPOS;
+import static com.example.internalship.utils.Constantes.NO_INFORMACION;
+import static com.example.internalship.utils.Constantes.OCULTAR_CAMPOS;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -90,14 +93,14 @@ public class Cirugia_OBS extends AppCompatActivity {
     }
 
     private void init() {
-        textfecha = findViewById(R.id.txtObsFecha_Cirugia);
-        txthoraingrreso = findViewById(R.id.txtObsHora_Cirugia);
-        twnumdias = findViewById(R.id.txtObsNumDias_Cirugia);
-        switchModificar = findViewById(R.id.switchModificarObs_Cirugia);
-        btnaddobs = this.findViewById(R.id.btnAgregarObservacion_Cirugia);
+        textfecha = findViewById(R.id.ET_FECHA_OBS_CIRUGIA);
+        txthoraingrreso = findViewById(R.id.ET_HORA_OBS_CIRUGIA);
+        twnumdias = findViewById(R.id.ET_DIAS_OBS_CIRUGIA);
+        switchModificar = findViewById(R.id.SWITCH_CAMPOS_OBS_CIRUGIA);
+        btnaddobs = this.findViewById(R.id.BT_AGREGAR_OBS_CIRUGIA);
 
-        String fechIngresoHora = "No info";
-        String horaingreso = "No info";
+        String fechIngresoHora = NO_INFORMACION;
+        String horaingreso = NO_INFORMACION;
         String numdias = Util.obtenerdiasenestadoporlistaObs_Cirugia(listOBS);
 
         for (CObservacionesVO obs : listOBS) {
@@ -116,11 +119,11 @@ public class Cirugia_OBS extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     banderaVisible = true;
-                    switchModificar.setText("Ocultar campos");
+                    switchModificar.setText(OCULTAR_CAMPOS);
                     ocultarItems();
                 } else {
                     banderaVisible = false;
-                    switchModificar.setText("Mostrar campos");
+                    switchModificar.setText(MOSTRAR_CAMPOS);
                     ocultarItems();
                 }
             }
@@ -137,7 +140,7 @@ public class Cirugia_OBS extends AppCompatActivity {
 
     private void ocultarItems() {
 
-        LinearLayout linearLayout = findViewById(R.id.linearLayoutObsdetalees_Cirugia);
+        LinearLayout linearLayout = findViewById(R.id.LY_DATA_OBS_CIRUGIA);
 
         for (int i = 0; i < linearLayout.getChildCount(); i++) {
             View view = linearLayout.getChildAt(i);
@@ -157,7 +160,7 @@ public class Cirugia_OBS extends AppCompatActivity {
 
     private void cargarRowsObservaciones() {
 
-        LinearLayout linearLayout = findViewById(R.id.linearLayoutObsdetalees_Cirugia);
+        LinearLayout linearLayout = findViewById(R.id.LY_DATA_OBS_CIRUGIA);
 
         editTextList = new ArrayList<>();
 
