@@ -1,9 +1,17 @@
 package com.example.internalship.iu.opciones.cirugia.obs;
 
 import static com.example.internalship.utils.Constantes.ALETAR_OPERACION_CANCELADA;
+import static com.example.internalship.utils.Constantes.NARANJA_CLARO;
+import static com.example.internalship.utils.Constantes.CONFIRMACION_ELIMINAR;
+import static com.example.internalship.utils.Constantes.CONSULTA_OPCION_CONFIRMACION;
 import static com.example.internalship.utils.Constantes.MOSTRAR_CAMPOS;
+import static com.example.internalship.utils.Constantes.NARANJA_OSCURO;
+import static com.example.internalship.utils.Constantes.NOMBRE_OPC_ACTUALIZAR;
+import static com.example.internalship.utils.Constantes.NOMBRE_OPC_CANCELAR;
+import static com.example.internalship.utils.Constantes.NOMBRE_OPC_ELIMINAR;
 import static com.example.internalship.utils.Constantes.NO_INFORMACION;
 import static com.example.internalship.utils.Constantes.OCULTAR_CAMPOS;
+import static com.example.internalship.utils.Constantes.OPC_TABLA_OBS;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -33,7 +41,7 @@ import com.example.internalship.db.Funcionalidad_Cirugia;
 import com.example.internalship.iu.opciones.cirugia.Cirugia_Detalle;
 import com.example.internalship.utils.Alertas;
 import com.example.internalship.utils.Util;
-import com.example.internalship.vo.cirugiaVO.CObservacionesVO;
+import com.example.internalship.vo.ObjetoVO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,12 +61,11 @@ public class Cirugia_OBS extends AppCompatActivity {
 
     private List<EditText> editTextList;
 
-    Button btnaddobs;
+    Button btnadd;
 
     Funcionalidad_Cirugia funcionalidad_cirugia = new Funcionalidad_Cirugia(Cirugia_OBS.this);
 
-    List<CObservacionesVO> listOBS;
-
+    List<ObjetoVO> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,14 +79,13 @@ public class Cirugia_OBS extends AppCompatActivity {
 
         getBundle();
 
-        listOBS = funcionalidad_cirugia.list_ObtenerOBS(idCama);
+        list = funcionalidad_cirugia.list_Obtener(idCama,OPC_TABLA_OBS);
 
         init();
 
-        cargarRowsObservaciones();
+        cargarRowservaciones();
 
         ocultarItems();
-
     }
 
     private void getBundle() {
@@ -97,16 +103,16 @@ public class Cirugia_OBS extends AppCompatActivity {
         txthoraingrreso = findViewById(R.id.ET_HORA_OBS_CIRUGIA);
         twnumdias = findViewById(R.id.ET_DIAS_OBS_CIRUGIA);
         switchModificar = findViewById(R.id.SWITCH_CAMPOS_OBS_CIRUGIA);
-        btnaddobs = this.findViewById(R.id.BT_AGREGAR_OBS_CIRUGIA);
+        btnadd = this.findViewById(R.id.BT_AGREGAR_OBS_CIRUGIA);
 
         String fechIngresoHora = NO_INFORMACION;
         String horaingreso = NO_INFORMACION;
-        String numdias = Util.obtenerdiasenestadoporlistaObs_Cirugia(listOBS);
+        String numdias = Util.obtenerdiasenestadoporlista(list);
 
-        for (CObservacionesVO obs : listOBS) {
-            if (obs.getPrimeringreso().equals("1")) {
-                fechIngresoHora = obs.getDia();
-                horaingreso = obs.getHoraingreso();
+        for (ObjetoVO objVO : list) {
+            if (objVO.getPrimeringreso().equals("1")) {
+                fechIngresoHora = objVO.getDia();
+                horaingreso = objVO.getHoraingreso();
                 break;
             }
         }
@@ -129,7 +135,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             }
         });
 
-        btnaddobs.setOnClickListener(v -> {
+        btnadd.setOnClickListener(v -> {
             Intent intent = new Intent(Cirugia_OBS.this, Cirugia_OBS_Add.class);
             intent.putExtra("idPac", idPac);
             intent.putExtra("idCama", idCama);
@@ -158,13 +164,13 @@ public class Cirugia_OBS extends AppCompatActivity {
         }
     }
 
-    private void cargarRowsObservaciones() {
+    private void cargarRowservaciones() {
 
         LinearLayout linearLayout = findViewById(R.id.LY_DATA_OBS_CIRUGIA);
 
         editTextList = new ArrayList<>();
 
-        for (int x = 0; x < listOBS.size(); x++) {
+        for (int x = 0; x < list.size(); x++) {
             // TITULO FECHA
             textView = new TextView(this);
             textView.setLayoutParams(new LinearLayout.LayoutParams(
@@ -174,12 +180,12 @@ public class Cirugia_OBS extends AppCompatActivity {
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) textView.getLayoutParams();
             params.setMargins(10, 10, 10, 5); // márgenes
             textView.setLayoutParams(params);
-            textView.setBackgroundColor(Color.parseColor("#FB893C")); // fondo personalizado
+            textView.setBackgroundColor(Color.parseColor(NARANJA_OSCURO)); // fondo personalizado
             textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); // gravedad
-            if (listOBS.get(x).getPrimeringreso().equals("1")) {
-                textView.setText(listOBS.get(x).getDia().concat("\n(Nota de Ingreso)"));
+            if (list.get(x).getPrimeringreso().equals("1")) {
+                textView.setText(list.get(x).getDia().concat("\n(Nota de Ingreso)"));
             } else {
-                textView.setText(listOBS.get(x).getDia());
+                textView.setText(list.get(x).getDia());
             }
             textView.setTextColor(Color.parseColor("#000000")); // color de texto
             textView.setTextSize(18); // tamaño de texto
@@ -203,7 +209,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             camaEscondida.setLayoutParams(params);
             camaEscondida.setTextColor(Color.parseColor("#000000")); // color de texto
-            camaEscondida.setText(listOBS.get(x).getCama()); // texto
+            camaEscondida.setText(list.get(x).getCama()); // texto
             camaEscondida.setId(View.generateViewId()); // asignar ID único
 
             editTextList.add(camaEscondida);
@@ -218,7 +224,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             diaescondida.setLayoutParams(params);
             diaescondida.setTextColor(Color.parseColor("#000000")); // color de texto
-            diaescondida.setText(listOBS.get(x).getDia()); // texto
+            diaescondida.setText(list.get(x).getDia()); // texto
             diaescondida.setId(View.generateViewId()); // asignar ID único
 
             editTextList.add(diaescondida);
@@ -232,7 +238,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params = (LinearLayout.LayoutParams) txfisico.getLayoutParams();
             params.setMargins(10, 2, 10, 10); // márgenes
             txfisico.setLayoutParams(params);
-            txfisico.setBackgroundColor(Color.parseColor("#FFB98B")); // fondo personalizado
+            txfisico.setBackgroundColor(Color.parseColor(NARANJA_CLARO)); // fondo personalizado
             txfisico.setGravity(Gravity.START | Gravity.CENTER_VERTICAL); // gravedad
             txfisico.setText("1. Examen físico"); // texto
             txfisico.setTextColor(Color.parseColor("#000000")); // color de texto
@@ -251,7 +257,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             textCaja.setLayoutParams(params);
             textCaja.setTextColor(Color.parseColor("#000000")); // color de texto
-            textCaja.setText(listOBS.get(x).getEfisico()); // texto
+            textCaja.setText(list.get(x).getEfisico()); // texto
             textCaja.setId(View.generateViewId()); // asignar ID único
             linearLayout.addView(textCaja);
 
@@ -267,7 +273,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params = (LinearLayout.LayoutParams) twEvolucion.getLayoutParams();
             params.setMargins(10, 2, 10, 10); // márgenes
             twEvolucion.setLayoutParams(params);
-            twEvolucion.setBackgroundColor(Color.parseColor("#FFB98B")); // fondo personalizado
+            twEvolucion.setBackgroundColor(Color.parseColor(NARANJA_CLARO)); // fondo personalizado
             twEvolucion.setGravity(Gravity.START | Gravity.CENTER_VERTICAL); // gravedad
             twEvolucion.setText("2. Evolucion"); // texto
             twEvolucion.setTextColor(Color.parseColor("#000000")); // color de texto
@@ -286,7 +292,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             edevolucion.setLayoutParams(params);
             edevolucion.setTextColor(Color.parseColor("#000000")); // color de texto
-            edevolucion.setText(listOBS.get(x).getEvolucion()); // texto
+            edevolucion.setText(list.get(x).getEvolucion()); // texto
             edevolucion.setId(View.generateViewId()); // asignar ID único
             linearLayout.addView(edevolucion);
 
@@ -302,7 +308,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params = (LinearLayout.LayoutParams) twdx.getLayoutParams();
             params.setMargins(10, 2, 10, 10); // márgenes
             twdx.setLayoutParams(params);
-            twdx.setBackgroundColor(Color.parseColor("#FFB98B")); // fondo personalizado
+            twdx.setBackgroundColor(Color.parseColor(NARANJA_CLARO)); // fondo personalizado
             twdx.setGravity(Gravity.START | Gravity.CENTER_VERTICAL); // gravedad
             twdx.setText("3. DX"); // texto
             twdx.setTextColor(Color.parseColor("#000000")); // color de texto
@@ -321,7 +327,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             txtdx.setLayoutParams(params);
             txtdx.setTextColor(Color.parseColor("#000000")); // color de texto
-            txtdx.setText(listOBS.get(x).getDx()); // texto
+            txtdx.setText(list.get(x).getDx()); // texto
             txtdx.setId(View.generateViewId()); // asignar ID único
             linearLayout.addView(txtdx);
 
@@ -337,7 +343,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params = (LinearLayout.LayoutParams) twplan.getLayoutParams();
             params.setMargins(10, 2, 10, 10); // márgenes
             twplan.setLayoutParams(params);
-            twplan.setBackgroundColor(Color.parseColor("#FFB98B")); // fondo personalizado
+            twplan.setBackgroundColor(Color.parseColor(NARANJA_CLARO)); // fondo personalizado
             twplan.setGravity(Gravity.START | Gravity.CENTER_VERTICAL); // gravedad
             twplan.setText("4. Plan"); // texto
             twplan.setTextColor(Color.parseColor("#000000")); // color de texto
@@ -356,7 +362,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             txtplan.setLayoutParams(params);
             txtplan.setTextColor(Color.parseColor("#000000")); // color de texto
-            txtplan.setText(listOBS.get(x).getPlan()); // texto
+            txtplan.setText(list.get(x).getPlan()); // texto
             txtplan.setId(View.generateViewId()); // asignar ID único
             linearLayout.addView(txtplan);
 
@@ -372,7 +378,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params = (LinearLayout.LayoutParams) lbTratamiento.getLayoutParams();
             params.setMargins(10, 2, 10, 10); // márgenes
             lbTratamiento.setLayoutParams(params);
-            lbTratamiento.setBackgroundColor(Color.parseColor("#FFB98B")); // fondo personalizado
+            lbTratamiento.setBackgroundColor(Color.parseColor(NARANJA_CLARO)); // fondo personalizado
             lbTratamiento.setGravity(Gravity.START | Gravity.CENTER_VERTICAL); // gravedad
             lbTratamiento.setText("5. Tratamiento"); // texto
             lbTratamiento.setTextColor(Color.parseColor("#000000")); // color de texto
@@ -391,7 +397,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             txtratamiento.setLayoutParams(params);
             txtratamiento.setTextColor(Color.parseColor("#000000")); // color de texto
-            txtratamiento.setText(listOBS.get(x).getTratamiento()); // texto
+            txtratamiento.setText(list.get(x).getTratamiento()); // texto
             txtratamiento.setId(View.generateViewId()); // asignar ID único
             linearLayout.addView(txtratamiento);
 
@@ -407,7 +413,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params = (LinearLayout.LayoutParams) lbResLab.getLayoutParams();
             params.setMargins(10, 2, 10, 10); // márgenes
             lbResLab.setLayoutParams(params);
-            lbResLab.setBackgroundColor(Color.parseColor("#FFB98B")); // fondo personalizado
+            lbResLab.setBackgroundColor(Color.parseColor(NARANJA_CLARO)); // fondo personalizado
             lbResLab.setGravity(Gravity.START | Gravity.CENTER_VERTICAL); // gravedad
             lbResLab.setText("6. Resultados de laboratorio"); // texto
             lbResLab.setTextColor(Color.parseColor("#000000")); // color de texto
@@ -427,7 +433,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             txtreslab.setLayoutParams(params);
             txtreslab.setTextColor(Color.parseColor("#000000")); // color de texto
-            txtreslab.setText(listOBS.get(x).getResLab()); // texto
+            txtreslab.setText(list.get(x).getResLab()); // texto
             txtreslab.setId(View.generateViewId()); // asignar ID único
             linearLayout.addView(txtreslab);
 
@@ -444,7 +450,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params = (LinearLayout.LayoutParams) lbresimagen.getLayoutParams();
             params.setMargins(10, 2, 10, 10); // márgenes
             lbresimagen.setLayoutParams(params);
-            lbresimagen.setBackgroundColor(Color.parseColor("#FFB98B")); // fondo personalizado
+            lbresimagen.setBackgroundColor(Color.parseColor(NARANJA_CLARO)); // fondo personalizado
             lbresimagen.setGravity(Gravity.START | Gravity.CENTER_VERTICAL); // gravedad
             lbresimagen.setText("7. Resultados de imágenes"); // texto
             lbresimagen.setTextColor(Color.parseColor("#000000")); // color de texto
@@ -463,7 +469,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             txtresimagen.setLayoutParams(params);
             txtresimagen.setTextColor(Color.parseColor("#000000")); // color de texto
-            txtresimagen.setText(listOBS.get(x).getResImagen()); // texto
+            txtresimagen.setText(list.get(x).getResImagen()); // texto
             txtresimagen.setId(View.generateViewId()); // asignar ID único
             linearLayout.addView(txtresimagen);
 
@@ -479,7 +485,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params = (LinearLayout.LayoutParams) twprocedimiento.getLayoutParams();
             params.setMargins(10, 2, 10, 10); // márgenes
             twprocedimiento.setLayoutParams(params);
-            twprocedimiento.setBackgroundColor(Color.parseColor("#FFB98B")); // fondo personalizado
+            twprocedimiento.setBackgroundColor(Color.parseColor(NARANJA_CLARO)); // fondo personalizado
             twprocedimiento.setGravity(Gravity.START | Gravity.CENTER_VERTICAL); // gravedad
             twprocedimiento.setText("8. Procedimientos"); // texto
             twprocedimiento.setTextColor(Color.parseColor("#000000")); // color de texto
@@ -498,7 +504,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             txtprocedimiento.setLayoutParams(params);
             txtprocedimiento.setTextColor(Color.parseColor("#000000")); // color de texto
-            txtprocedimiento.setText(listOBS.get(x).getProcedimiento()); // texto
+            txtprocedimiento.setText(list.get(x).getProcedimiento()); // texto
             txtprocedimiento.setId(View.generateViewId()); // asignar ID único
             linearLayout.addView(txtprocedimiento);
 
@@ -517,7 +523,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             horaingresoEscondida.setLayoutParams(params);
             horaingresoEscondida.setTextColor(Color.parseColor("#000000")); // color de texto
-            horaingresoEscondida.setText(listOBS.get(x).getHoraingreso()); // texto
+            horaingresoEscondida.setText(list.get(x).getHoraingreso()); // texto
             horaingresoEscondida.setId(View.generateViewId()); // asignar ID único
 
             editTextList.add(horaingresoEscondida);
@@ -532,7 +538,7 @@ public class Cirugia_OBS extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             primerIngresoEscondido.setLayoutParams(params);
             primerIngresoEscondido.setTextColor(Color.parseColor("#000000")); // color de texto
-            primerIngresoEscondido.setText(listOBS.get(x).getPrimeringreso()); // texto
+            primerIngresoEscondido.setText(list.get(x).getPrimeringreso()); // texto
             primerIngresoEscondido.setId(View.generateViewId()); // asignar ID único
 
             editTextList.add(primerIngresoEscondido);
@@ -540,36 +546,36 @@ public class Cirugia_OBS extends AppCompatActivity {
             // --------------------------------------------------------------------------------------
             //ESCONDIDOS
             // HORA ESCONDIDA
-            EditText idObsEscondida = new EditText(this);
-            idObsEscondida.setLayoutParams(new LinearLayout.LayoutParams(
+            EditText idEscondida = new EditText(this);
+            idEscondida.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, // ancho
                     LinearLayout.LayoutParams.WRAP_CONTENT // alto
             ));
-            params = (LinearLayout.LayoutParams) idObsEscondida.getLayoutParams();
+            params = (LinearLayout.LayoutParams) idEscondida.getLayoutParams();
             params.setMargins(10, 0, 10, 10); // márgenes
-            idObsEscondida.setLayoutParams(params);
-            idObsEscondida.setTextColor(Color.parseColor("#000000")); // color de texto
-            idObsEscondida.setText(String.valueOf(listOBS.get(x).getId())); // texto
-            idObsEscondida.setId(View.generateViewId()); // asignar ID único
+            idEscondida.setLayoutParams(params);
+            idEscondida.setTextColor(Color.parseColor("#000000")); // color de texto
+            idEscondida.setText(String.valueOf(list.get(x).getId())); // texto
+            idEscondida.setId(View.generateViewId()); // asignar ID único
 
-            editTextList.add(idObsEscondida);
+            editTextList.add(idEscondida);
         }
     }
 
-    private void mostrarOpciones(int indiceOBS) {
+    private void mostrarOpciones(int indice) {
 
 
-        final CharSequence[] opciones = {"Eliminar", "Actualizar", "Cancelar"};
+        final CharSequence[] opciones = {NOMBRE_OPC_ELIMINAR, NOMBRE_OPC_ACTUALIZAR, NOMBRE_OPC_CANCELAR};
         AlertDialog.Builder builder = new AlertDialog.Builder(Cirugia_OBS.this);
         builder.setTitle("Elige una opción");
         builder.setItems(opciones, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int seleccion) {
-                if (opciones[seleccion] == "Eliminar") {
-                    eliminar_OBS(indiceOBS);
-                } else if (opciones[seleccion] == "Actualizar") {
-                    update_OBS(indiceOBS*13);
-                } else if (opciones[seleccion] == "Cancelar") {
+                if (opciones[seleccion] == NOMBRE_OPC_ELIMINAR) {
+                    eliminar(indice);
+                } else if (opciones[seleccion] == NOMBRE_OPC_ACTUALIZAR) {
+                    update(indice*13);
+                } else if (opciones[seleccion] == NOMBRE_OPC_CANCELAR) {
                     Toast.makeText(Cirugia_OBS.this, ALETAR_OPERACION_CANCELADA, Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 }
@@ -578,14 +584,14 @@ public class Cirugia_OBS extends AppCompatActivity {
         builder.show();
     }
 
-    private void eliminar_OBS(int indiceOBS){
-        Alertas.showConfirmationDialog(Cirugia_OBS.this, "Confirmación", "¿Está seguro que desea eliminar OBS?", new Alertas.ConfirmationListener() {
+    private void eliminar(int indice){
+        Alertas.showConfirmationDialog(Cirugia_OBS.this, CONSULTA_OPCION_CONFIRMACION, CONFIRMACION_ELIMINAR, new Alertas.ConfirmationListener() {
             @Override
             public void onConfirmed() {
-                float code = funcionalidad_cirugia.eliminar_Cirugia_OBS(String.valueOf(listOBS.get(indiceOBS).getId()));
+                float code = funcionalidad_cirugia.eliminar_Cirugia_TIPO(String.valueOf(list.get(indice).getId()),OPC_TABLA_OBS);
                 if (code >= 0) {
                     Toast.makeText(Cirugia_OBS.this, "Eliminado correctamente", Toast.LENGTH_SHORT).show();
-                    listOBS.remove(indiceOBS);
+                    list.remove(indice);
                     Intent intent = new Intent(Cirugia_OBS.this, Cirugia_OBS.class);
                     intent.putExtra("idPac", idPac);
                     intent.putExtra("idCama", idCama);
@@ -603,29 +609,29 @@ public class Cirugia_OBS extends AppCompatActivity {
         });
     }
 
-    private void update_OBS(int indiceOBS){
+    private void update(int indice){
 
-        String txtcama = editTextList.get(indiceOBS).getText().toString();
-        String txtdia = editTextList.get(indiceOBS + 1).getText().toString();
-        String txtefisico = editTextList.get(indiceOBS + 2).getText().toString();
-        String txtevolucion = editTextList.get(indiceOBS + 3).getText().toString();
-        String txtdx = editTextList.get(indiceOBS + 4).getText().toString();
-        String txtplan = editTextList.get(indiceOBS + 5).getText().toString();
-        String txttratamiento = editTextList.get(indiceOBS + 6).getText().toString();
-        String txtreslab = editTextList.get(indiceOBS + 7).getText().toString();
-        String txtresimagen = editTextList.get(indiceOBS + 8).getText().toString();
-        String txtprocedimiento = editTextList.get(indiceOBS + 9).getText().toString();
-        String txthoraingreso = editTextList.get(indiceOBS + 10).getText().toString();
-        String txtprimeringreso = editTextList.get(indiceOBS + 11).getText().toString();
-        int idObs = Integer.parseInt(editTextList.get(indiceOBS + 12).getText().toString());
+        String txtcama = editTextList.get(indice).getText().toString();
+        String txtdia = editTextList.get(indice + 1).getText().toString();
+        String txtefisico = editTextList.get(indice + 2).getText().toString();
+        String txtevolucion = editTextList.get(indice + 3).getText().toString();
+        String txtdx = editTextList.get(indice + 4).getText().toString();
+        String txtplan = editTextList.get(indice + 5).getText().toString();
+        String txttratamiento = editTextList.get(indice + 6).getText().toString();
+        String txtreslab = editTextList.get(indice + 7).getText().toString();
+        String txtresimagen = editTextList.get(indice + 8).getText().toString();
+        String txtprocedimiento = editTextList.get(indice + 9).getText().toString();
+        String txthoraingreso = editTextList.get(indice + 10).getText().toString();
+        String txtprimeringreso = editTextList.get(indice + 11).getText().toString();
+        int id = Integer.parseInt(editTextList.get(indice + 12).getText().toString());
 
 
-        CObservacionesVO objeto = new CObservacionesVO(idObs, txtcama, txtdia, txtefisico, txtevolucion, txtdx, txtplan, txttratamiento, txtreslab, txtresimagen, txtprocedimiento, txthoraingreso, txtprimeringreso);
+        ObjetoVO objeto = new ObjetoVO(id, txtcama, txtdia, txtefisico, txtevolucion, txtdx, txtplan, txttratamiento, txtreslab, txtresimagen, txtprocedimiento, txthoraingreso, txtprimeringreso);
 
-        int code = funcionalidad_cirugia.actualizar_Paciente_Cirugia_OBS(objeto);
+        int code = funcionalidad_cirugia.actualizar_Paciente_Cirugia(objeto,OPC_TABLA_OBS);
 
         if(code >= 0){
-            Toast.makeText(Cirugia_OBS.this, "Se actualizo la Observación ".concat(objeto.getDia()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(Cirugia_OBS.this, "Se actualizo ".concat(objeto.getDia()), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -638,4 +644,5 @@ public class Cirugia_OBS extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+    
 }

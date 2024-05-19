@@ -30,4 +30,6 @@ public class Constantes {
     public static String AMARILLO_CLARO = "#FFECA7";
     public static String LILA_OSCURO = "#DC5EFF";
     public static String LILA_CLARO = "#E6B7FF";
+    public static String NARANJA_OSCURO = "#FF9500";
+    public static String NARANJA_CLARO = "#FFC884";
 }
