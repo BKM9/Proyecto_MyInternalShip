@@ -45,7 +45,6 @@ public class Cirugia_UCI_Add extends AppCompatActivity {
     Button btnadd, btncancelaradd;
     TextView lbhoraingresoadd, twTituloCamaervacionADD;
     Switch primeravez;
-    private boolean isDeleting = false;
     int banderaingreso;
     Funcionalidad_Cirugia funcionalidad_cirugia = new Funcionalidad_Cirugia(Cirugia_UCI_Add.this);
 

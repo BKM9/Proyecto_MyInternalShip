@@ -83,72 +83,6 @@ public class Funcionalidad_Cirugia extends DbHelper {
         return db.update(TABLE_PACIENTES_CIRUGIA, contentValues, "id_pac = ?", new String[]{String.valueOf(id)});
     }
 
-    public long insertar_Cirugia_HCirugia(String cama,String dia, String efisico, String evolucion,
-                                          String dx, String plan, String tratamiento,
-                                          String resLab, String resImagen, String procedimiento,
-                                          String horaingreso, String primeringreso) {
-
-        long id = 0;
-        try {
-
-            DbHelper dbHelper = new DbHelper(context);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("cama", cama);
-            contentValues.put("dia", dia);
-            contentValues.put("efisico", efisico);
-            contentValues.put("evolucion", evolucion);
-            contentValues.put("dx", dx);
-            contentValues.put("plann", plan);
-            contentValues.put("tratamiento", tratamiento);
-            contentValues.put("resLab", resLab);
-            contentValues.put("resImagen", resImagen);
-            contentValues.put("procedimiento", procedimiento);
-            contentValues.put("horaingreso", horaingreso);
-            contentValues.put("primeringreso", primeringreso);
-
-            id = db.insert(TABLE_PACIENTES_CIRUGIA_HCIRUGIA, null, contentValues);
-
-        } catch (Exception e){
-            e.toString();
-        }
-        return id;
-    }
-
-    public long insertar_Cirugia_UCI(String cama,String dia, String efisico, String evolucion,
-                                          String dx, String plan, String tratamiento,
-                                          String resLab, String resImagen, String procedimiento,
-                                          String horaingreso, String primeringreso) {
-
-        long id = 0;
-        try {
-
-            DbHelper dbHelper = new DbHelper(context);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("cama", cama);
-            contentValues.put("dia", dia);
-            contentValues.put("efisico", efisico);
-            contentValues.put("evolucion", evolucion);
-            contentValues.put("dx", dx);
-            contentValues.put("plann", plan);
-            contentValues.put("tratamiento", tratamiento);
-            contentValues.put("resLab", resLab);
-            contentValues.put("resImagen", resImagen);
-            contentValues.put("procedimiento", procedimiento);
-            contentValues.put("horaingreso", horaingreso);
-            contentValues.put("primeringreso", primeringreso);
-
-            id = db.insert(TABLE_PACIENTES_CIRUGIA_UCI, null, contentValues);
-
-        } catch (Exception e){
-            e.toString();
-        }
-        return id;
-    }
-
     public long insertar_Cirugia_OBS(String cama,String dia, String efisico, String evolucion,
                                      String dx, String plan, String tratamiento,
                                      String resLab, String resImagen, String procedimiento,
@@ -180,85 +114,6 @@ public class Funcionalidad_Cirugia extends DbHelper {
             e.toString();
         }
         return id;
-    }
-
-    public long insertar_Cirugia_TSHOCK(String cama,String dia, String efisico, String evolucion,
-                                     String dx, String plan, String tratamiento,
-                                     String resLab, String resImagen, String procedimiento,
-                                     String horaingreso, String primeringreso) {
-
-        long id = 0;
-        try {
-
-            DbHelper dbHelper = new DbHelper(context);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("cama", cama);
-            contentValues.put("dia", dia);
-            contentValues.put("efisico", efisico);
-            contentValues.put("evolucion", evolucion);
-            contentValues.put("dx", dx);
-            contentValues.put("plann", plan);
-            contentValues.put("tratamiento", tratamiento);
-            contentValues.put("resLab", resLab);
-            contentValues.put("resImagen", resImagen);
-            contentValues.put("procedimiento", procedimiento);
-            contentValues.put("horaingreso", horaingreso);
-            contentValues.put("primeringreso", primeringreso);
-
-            id = db.insert(TABLE_PACIENTES_CIRUGIA_TSHOCK, null, contentValues);
-
-        } catch (Exception e){
-            e.toString();
-        }
-        return id;
-    }
-
-    public int actualizar_Paciente_Cirugia_HCIRUGIA(int id, String cama,String dia, String efisico, String evolucion,
-                                                    String dx, String plan, String tratamiento,
-                                                    String resLab, String resImagen, String procedimiento,
-                                                    String horaingreso, String primeringreso) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("cama", cama);
-        contentValues.put("dia", dia);
-        contentValues.put("efisico", efisico);
-        contentValues.put("evolucion", evolucion);
-        contentValues.put("dx", dx);
-        contentValues.put("plann", plan);
-        contentValues.put("tratamiento", tratamiento);
-        contentValues.put("resLab", resLab);
-        contentValues.put("resImagen", resImagen);
-        contentValues.put("procedimiento", procedimiento);
-        contentValues.put("horaingreso", horaingreso);
-        contentValues.put("primeringreso", primeringreso);
-
-        return db.update(TABLE_PACIENTES_CIRUGIA_HCIRUGIA, contentValues, "id_pac_hcirugia = ?", new String[]{String.valueOf(id)});
-    }
-
-    public int actualizar_Paciente_Cirugia_UCI(int id, String cama,String dia, String efisico, String evolucion,
-                                                    String dx, String plan, String tratamiento,
-                                                    String resLab, String resImagen, String procedimiento,
-                                                    String horaingreso, String primeringreso) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("cama", cama);
-        contentValues.put("dia", dia);
-        contentValues.put("efisico", efisico);
-        contentValues.put("evolucion", evolucion);
-        contentValues.put("dx", dx);
-        contentValues.put("plann", plan);
-        contentValues.put("tratamiento", tratamiento);
-        contentValues.put("resLab", resLab);
-        contentValues.put("resImagen", resImagen);
-        contentValues.put("procedimiento", procedimiento);
-        contentValues.put("horaingreso", horaingreso);
-        contentValues.put("primeringreso", primeringreso);
-
-        return db.update(TABLE_PACIENTES_CIRUGIA_UCI, contentValues, "id_pac_uci = ?", new String[]{String.valueOf(id)});
     }
 
     public int eliminar_Cirugia_TIPO(String id, String tipo){
@@ -411,7 +266,6 @@ public class Funcionalidad_Cirugia extends DbHelper {
         return contentValues;
     }
 
-
     public int actualizar_Paciente_Cirugia_OBS(CObservacionesVO obs) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -436,29 +290,6 @@ public class Funcionalidad_Cirugia extends DbHelper {
         contentValues.put("horaingreso", obs.getHoraingreso());
         contentValues.put("primeringreso", obs.getPrimeringreso());
         return contentValues;
-    }
-
-    public int actualizar_Paciente_Cirugia_TSHOCK(int id, String cama,String dia, String efisico, String evolucion,
-                                               String dx, String plan, String tratamiento,
-                                               String resLab, String resImagen, String procedimiento,
-                                               String horaingreso, String primeringreso) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("cama", cama);
-        contentValues.put("dia", dia);
-        contentValues.put("efisico", efisico);
-        contentValues.put("evolucion", evolucion);
-        contentValues.put("dx", dx);
-        contentValues.put("plann", plan);
-        contentValues.put("tratamiento", tratamiento);
-        contentValues.put("resLab", resLab);
-        contentValues.put("resImagen", resImagen);
-        contentValues.put("procedimiento", procedimiento);
-        contentValues.put("horaingreso", horaingreso);
-        contentValues.put("primeringreso", primeringreso);
-
-        return db.update(TABLE_PACIENTES_CIRUGIA_TSHOCK, contentValues, "id = ?", new String[]{String.valueOf(id)});
     }
 
     public int eliminar_Cirugia_Paciente(int id, String cama) {
