@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/fondo_main"
+    tools:context=".iu.opciones.cirugia.uci.Cirugia_UCI_Add">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/TV_TITULO_UCI_CIRUGIA_ADD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:background="#DC5EFF"
+                            android:gravity="center_vertical"
+                            android:text=" CAMA : 512"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/lbfechaingresoaddobs"
+                            android:layout_width="match_parent"
+                            android:layout_height="50sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="FECHA INGRESO: "
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat" />
+
+                        <EditText
+                            android:id="@+id/ET_FECHA_UCI_CIRUGIA_ADD"
+                            android:layout_width="match_parent"
+                            android:layout_height="50sp"
+                            android:layout_marginEnd="10dp"
+                            android:inputType="number"
+                            android:focusableInTouchMode="false"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:textColor="#000000"
+                            android:hint="Ingresa Fecha"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <Switch
+                            android:id="@+id/SWITCH_PRIMERAVEZ_UCI_CIRUGIA_ADD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:text="INGRESO POR PRIMERA VEZ"
+                            tools:ignore="UseSwitchCompatOrMaterialXml" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/TV_HORA_UCI_CIRUGIA_ADD"
+                            android:layout_width="match_parent"
+                            android:layout_height="50sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="HORA INGRESO: "
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat"
+                            android:visibility="gone"/>
+
+                        <EditText
+                            android:id="@+id/ET_HORA_UCI_CIRUGIA_ADD"
+                            android:layout_width="match_parent"
+                            android:layout_height="50sp"
+                            android:layout_marginEnd="10dp"
+                            android:focusableInTouchMode="false"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:visibility="gone"
+                            android:textColor="#000000"
+                            android:hint="Ingresa hora de ingreso"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/lbexafisicoobsadd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="1. Examen físico"
+                            android:background="#E6B7FF"
+                            android:gravity="center_vertical"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/ET_EFISICO_UCI_CIRUGIA_ADD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:textAlignment="viewStart"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/lbevolucion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="2. Evolución"
+                            android:background="#E6B7FF"
+                            android:gravity="center_vertical"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/ET_EVOLUCION_UCI_CIRUGIA_ADD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:textAlignment="viewStart"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/lbDXOBSSADD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="3. DX"
+                            android:background="#E6B7FF"
+                            android:gravity="center_vertical"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/ET_DX_UCI_CIRUGIA_ADD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:textAlignment="viewStart"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/lbplanaddobs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="4. Plan"
+                            android:background="#E6B7FF"
+                            android:gravity="center_vertical"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/ET_PLAN_UCI_CIRUGIA_ADD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:textAlignment="viewStart"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/lbtratamiendoaddobs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="5. Tratamiento"
+                            android:background="#E6B7FF"
+                            android:gravity="center_vertical"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/ET_TRATAMIENTO_UCI_CIRUGIA_ADD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:textAlignment="viewStart"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/lbreslabobsadd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="6. Resultados de laboratorio"
+                            android:background="#E6B7FF"
+                            android:gravity="center_vertical"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/ET_RESLAB_UCI_CIRUGIA_ADD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:textAlignment="viewStart"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/lbresimagenaddobs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="7. Resultados de imágenes"
+                            android:background="#E6B7FF"
+                            android:gravity="center_vertical"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/ET_RESIMAGEN_UCI_CIRUGIA_ADD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:textAlignment="viewStart"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/lbprocedimientoaddobs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="8. Procedimientos"
+                            android:background="#E6B7FF"
+                            android:gravity="center_vertical"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/ET_PROCEDIMIENTO_UCI_CIRUGIA_ADD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:textAlignment="viewStart"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="20dp">
+
+                        <Button
+                            android:id="@+id/BTN_AGREGAR_UCI_CIRUGIA_ADD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+
+                            android:background="#E3FD9A"
+                            android:gravity="center_vertical"
+                            android:text="Agregar"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat,TextSizeCheck" />
+
+                        <Button
+                            android:id="@+id/BTN_CANCELAR_UCI_CIRUGIA_ADD"
+                            android:layout_width="92dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+
+                            android:background="#FF9C8B"
+                            android:gravity="center_vertical"
+                            android:text="CANCELAR"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat" />
+                    </LinearLayout>
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

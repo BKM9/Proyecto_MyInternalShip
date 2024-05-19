@@ -15,6 +15,9 @@
         android:theme="@style/Theme.InternalShip"
         tools:targetApi="31">
         <activity
+            android:name=".iu.opciones.cirugia.uci.Cirugia_UCI_Add"
+            android:windowSoftInputMode="adjustPan" /> <!-- android:windowSoftInputMode="adjustPan" AUTO AJUSTABLE -->
+        <activity
             android:name=".iu.opciones.cirugia.tshock.Cirugia_TSHOCK_Add"
             android:windowSoftInputMode="adjustPan" /> <!-- android:windowSoftInputMode="adjustPan" AUTO AJUSTABLE -->
         <activity

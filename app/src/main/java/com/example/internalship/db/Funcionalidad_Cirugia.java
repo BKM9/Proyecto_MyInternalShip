@@ -288,16 +288,16 @@ public class Funcionalidad_Cirugia extends DbHelper {
 
         switch (tipo){
             case "OBS":
-                cursor = db.rawQuery("SELECT * FROM " + TABLE_PACIENTES_CIRUGIA_OBS + " WHERE cama = ?", new String[]{cama});
+                cursor = db.rawQuery("SELECT * FROM " + TABLE_PACIENTES_CIRUGIA_OBS + " WHERE cama = ? ORDER BY dia ASC", new String[]{cama});
                 break;
             case "CHCIRUGIA":
-                cursor = db.rawQuery("SELECT * FROM " + TABLE_PACIENTES_CIRUGIA_HCIRUGIA + " WHERE cama = ?", new String[]{cama});
+                cursor = db.rawQuery("SELECT * FROM " + TABLE_PACIENTES_CIRUGIA_HCIRUGIA + " WHERE cama = ? ORDER BY dia ASC", new String[]{cama});
                 break;
             case "UCI":
-                cursor = db.rawQuery("SELECT * FROM " + TABLE_PACIENTES_CIRUGIA_UCI + " WHERE cama = ?", new String[]{cama});
+                cursor = db.rawQuery("SELECT * FROM " + TABLE_PACIENTES_CIRUGIA_UCI + " WHERE cama = ? ORDER BY dia ASC", new String[]{cama});
                 break;
             case "TSHOCK":
-                cursor = db.rawQuery("SELECT * FROM " + TABLE_PACIENTES_CIRUGIA_TSHOCK + " WHERE cama = ?", new String[]{cama});
+                cursor = db.rawQuery("SELECT * FROM " + TABLE_PACIENTES_CIRUGIA_TSHOCK + " WHERE cama = ? ORDER BY dia ASC", new String[]{cama});
                 break;
         }
 
