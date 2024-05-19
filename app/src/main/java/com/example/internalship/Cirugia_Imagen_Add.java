@@ -188,18 +188,17 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
         final CharSequence[] opciones = {"Tomar foto", "Elegir de galería", "Cancelar"};
         AlertDialog.Builder builder = new AlertDialog.Builder(Cirugia_Imagen_Add.this);
         builder.setTitle("Elige una opción");
-        builder.setItems(opciones, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int seleccion) {
-                if (opciones[seleccion] == "Tomar foto") {
-                    abrirCamara();
-                } else if (opciones[seleccion] == "Elegir de galería") {
-                    abrirGaleria();
-                } else if (opciones[seleccion] == "Cancelar") {
-                    dialog.dismiss();
-                }
+
+        builder.setItems(opciones, (dialog, seleccion) -> {
+            if (opciones[seleccion] == "Tomar foto") {
+                abrirCamara();
+            } else if (opciones[seleccion] == "Elegir de galería") {
+                abrirGaleria();
+            } else if (opciones[seleccion] == "Cancelar") {
+                dialog.dismiss();
             }
         });
+
         builder.show();
     }
 
