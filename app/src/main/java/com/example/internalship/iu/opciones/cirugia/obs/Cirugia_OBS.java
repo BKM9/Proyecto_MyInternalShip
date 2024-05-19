@@ -568,7 +568,7 @@ public class Cirugia_OBS extends AppCompatActivity {
                 if (opciones[seleccion] == "Eliminar") {
                     eliminar_OBS(indiceOBS);
                 } else if (opciones[seleccion] == "Actualizar") {
-                    update_OBS(indiceOBS);
+                    update_OBS(indiceOBS*13);
                 } else if (opciones[seleccion] == "Cancelar") {
                     Toast.makeText(Cirugia_OBS.this, ALETAR_OPERACION_CANCELADA, Toast.LENGTH_SHORT).show();
                     dialog.dismiss();

@@ -571,7 +571,7 @@ public class Cirugia_HCirugia extends AppCompatActivity {
                 if (opciones[seleccion] == "Eliminar") {
                     eliminar(indice);
                 } else if (opciones[seleccion] == "Actualizar") {
-                    update(indice);
+                    update(indice*13);
                 } else if (opciones[seleccion] == "Cancelar") {
                     Toast.makeText(Cirugia_HCirugia.this, ALETAR_OPERACION_CANCELADA, Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
