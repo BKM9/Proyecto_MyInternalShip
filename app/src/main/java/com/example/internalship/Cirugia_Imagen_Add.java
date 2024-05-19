@@ -223,6 +223,7 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (resultCode == RESULT_OK && requestCode == CODIGO_GALERIA) {
             imagenSeleccionada = data.getData();
 
@@ -303,8 +304,6 @@ public class Cirugia_Imagen_Add extends AppCompatActivity {
         Uri uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
         try {
-
-
 
             OutputStream out = getContentResolver().openOutputStream(uri);
             Bitmap bitmap = ((BitmapDrawable) imgFotoTomadaoEncontrada_Cirugia.getDrawable()).getBitmap();
