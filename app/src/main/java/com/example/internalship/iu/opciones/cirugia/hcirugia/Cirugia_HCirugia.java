@@ -7,6 +7,7 @@ import static com.example.internalship.utils.Constantes.CONFIRMACION_ELIMINAR;
 import static com.example.internalship.utils.Constantes.MOSTRAR_CAMPOS;
 import static com.example.internalship.utils.Constantes.NO_INFORMACION;
 import static com.example.internalship.utils.Constantes.OCULTAR_CAMPOS;
+import static com.example.internalship.utils.Constantes.OPC_TABLA_CHCIRUGIA;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -56,11 +57,11 @@ public class Cirugia_HCirugia extends AppCompatActivity {
 
     private List<EditText> editTextList;
 
-    Button btnaddobs;
+    Button btnadd;
 
     Funcionalidad_Cirugia funcionalidad_cirugia = new Funcionalidad_Cirugia(Cirugia_HCirugia.this);
 
-    List<ObjetoVO> listOBS;
+    List<ObjetoVO> list;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,11 +76,11 @@ public class Cirugia_HCirugia extends AppCompatActivity {
 
         getBundle();
 
-        listOBS = funcionalidad_cirugia.list_Obtener(idCama,"CHCIRUGIA");
+        list = funcionalidad_cirugia.list_Obtener(idCama,OPC_TABLA_CHCIRUGIA);
 
         init();
 
-        cargarRowsObservaciones();
+        cargarRowservaciones();
 
         ocultarItems();
     }
@@ -99,16 +100,16 @@ public class Cirugia_HCirugia extends AppCompatActivity {
         txthoraingrreso = findViewById(R.id.ET_HORA_HCIRUGIA_CIRUGIA);
         twnumdias = findViewById(R.id.ET_DIAS_HCIRUGIA_CIRUGIA);
         switchModificar = findViewById(R.id.SWITCH_CAMPOS_HCIRUGIA_CIRUGIA);
-        btnaddobs = this.findViewById(R.id.BT_AGREGAR_HCIRUGIA_CIRUGIA);
+        btnadd = this.findViewById(R.id.BT_AGREGAR_HCIRUGIA_CIRUGIA);
 
         String fechIngresoHora = NO_INFORMACION;
         String horaingreso = NO_INFORMACION;
-        String numdias = Util.obtenerdiasenestadoporlista(listOBS);
+        String numdias = Util.obtenerdiasenestadoporlista(list);
 
-        for (ObjetoVO obs : listOBS) {
-            if (obs.getPrimeringreso().equals("1")) {
-                fechIngresoHora = obs.getDia();
-                horaingreso = obs.getHoraingreso();
+        for (ObjetoVO objVO : list) {
+            if (objVO.getPrimeringreso().equals("1")) {
+                fechIngresoHora = objVO.getDia();
+                horaingreso = objVO.getHoraingreso();
                 break;
             }
         }
@@ -131,7 +132,7 @@ public class Cirugia_HCirugia extends AppCompatActivity {
             }
         });
 
-        btnaddobs.setOnClickListener(v -> {
+        btnadd.setOnClickListener(v -> {
             Intent intent = new Intent(Cirugia_HCirugia.this, Cirugia_HCirugia_Add.class);
             intent.putExtra("idPac", idPac);
             intent.putExtra("idCama", idCama);
@@ -160,13 +161,13 @@ public class Cirugia_HCirugia extends AppCompatActivity {
         }
     }
 
-    private void cargarRowsObservaciones() {
+    private void cargarRowservaciones() {
 
         LinearLayout linearLayout = findViewById(R.id.LY_DATA_HCIRUGIA_CIRUGIA);
 
         editTextList = new ArrayList<>();
 
-        for (int x = 0; x < listOBS.size(); x++) {
+        for (int x = 0; x < list.size(); x++) {
             // TITULO FECHA
             textView = new TextView(this);
             textView.setLayoutParams(new LinearLayout.LayoutParams(
@@ -178,10 +179,10 @@ public class Cirugia_HCirugia extends AppCompatActivity {
             textView.setLayoutParams(params);
             textView.setBackgroundColor(Color.parseColor(CELESTE_OSCURO)); // fondo personalizado
             textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); // gravedad
-            if (listOBS.get(x).getPrimeringreso().equals("1")) {
-                textView.setText(listOBS.get(x).getDia().concat("\n(Nota de Ingreso)"));
+            if (list.get(x).getPrimeringreso().equals("1")) {
+                textView.setText(list.get(x).getDia().concat("\n(Nota de Ingreso)"));
             } else {
-                textView.setText(listOBS.get(x).getDia());
+                textView.setText(list.get(x).getDia());
             }
             textView.setTextColor(Color.parseColor("#000000")); // color de texto
             textView.setTextSize(18); // tamaño de texto
@@ -205,7 +206,7 @@ public class Cirugia_HCirugia extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             camaEscondida.setLayoutParams(params);
             camaEscondida.setTextColor(Color.parseColor("#000000")); // color de texto
-            camaEscondida.setText(listOBS.get(x).getCama()); // texto
+            camaEscondida.setText(list.get(x).getCama()); // texto
             camaEscondida.setId(View.generateViewId()); // asignar ID único
 
             editTextList.add(camaEscondida);
@@ -220,7 +221,7 @@ public class Cirugia_HCirugia extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             diaescondida.setLayoutParams(params);
             diaescondida.setTextColor(Color.parseColor("#000000")); // color de texto
-            diaescondida.setText(listOBS.get(x).getDia()); // texto
+            diaescondida.setText(list.get(x).getDia()); // texto
             diaescondida.setId(View.generateViewId()); // asignar ID único
 
             editTextList.add(diaescondida);
@@ -253,7 +254,7 @@ public class Cirugia_HCirugia extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             textCaja.setLayoutParams(params);
             textCaja.setTextColor(Color.parseColor("#000000")); // color de texto
-            textCaja.setText(listOBS.get(x).getEfisico()); // texto
+            textCaja.setText(list.get(x).getEfisico()); // texto
             textCaja.setId(View.generateViewId()); // asignar ID único
             linearLayout.addView(textCaja);
 
@@ -288,7 +289,7 @@ public class Cirugia_HCirugia extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             edevolucion.setLayoutParams(params);
             edevolucion.setTextColor(Color.parseColor("#000000")); // color de texto
-            edevolucion.setText(listOBS.get(x).getEvolucion()); // texto
+            edevolucion.setText(list.get(x).getEvolucion()); // texto
             edevolucion.setId(View.generateViewId()); // asignar ID único
             linearLayout.addView(edevolucion);
 
@@ -323,7 +324,7 @@ public class Cirugia_HCirugia extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             txtdx.setLayoutParams(params);
             txtdx.setTextColor(Color.parseColor("#000000")); // color de texto
-            txtdx.setText(listOBS.get(x).getDx()); // texto
+            txtdx.setText(list.get(x).getDx()); // texto
             txtdx.setId(View.generateViewId()); // asignar ID único
             linearLayout.addView(txtdx);
 
@@ -358,7 +359,7 @@ public class Cirugia_HCirugia extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             txtplan.setLayoutParams(params);
             txtplan.setTextColor(Color.parseColor("#000000")); // color de texto
-            txtplan.setText(listOBS.get(x).getPlan()); // texto
+            txtplan.setText(list.get(x).getPlan()); // texto
             txtplan.setId(View.generateViewId()); // asignar ID único
             linearLayout.addView(txtplan);
 
@@ -393,7 +394,7 @@ public class Cirugia_HCirugia extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             txtratamiento.setLayoutParams(params);
             txtratamiento.setTextColor(Color.parseColor("#000000")); // color de texto
-            txtratamiento.setText(listOBS.get(x).getTratamiento()); // texto
+            txtratamiento.setText(list.get(x).getTratamiento()); // texto
             txtratamiento.setId(View.generateViewId()); // asignar ID único
             linearLayout.addView(txtratamiento);
 
@@ -429,7 +430,7 @@ public class Cirugia_HCirugia extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             txtreslab.setLayoutParams(params);
             txtreslab.setTextColor(Color.parseColor("#000000")); // color de texto
-            txtreslab.setText(listOBS.get(x).getResLab()); // texto
+            txtreslab.setText(list.get(x).getResLab()); // texto
             txtreslab.setId(View.generateViewId()); // asignar ID único
             linearLayout.addView(txtreslab);
 
@@ -465,7 +466,7 @@ public class Cirugia_HCirugia extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             txtresimagen.setLayoutParams(params);
             txtresimagen.setTextColor(Color.parseColor("#000000")); // color de texto
-            txtresimagen.setText(listOBS.get(x).getResImagen()); // texto
+            txtresimagen.setText(list.get(x).getResImagen()); // texto
             txtresimagen.setId(View.generateViewId()); // asignar ID único
             linearLayout.addView(txtresimagen);
 
@@ -500,7 +501,7 @@ public class Cirugia_HCirugia extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             txtprocedimiento.setLayoutParams(params);
             txtprocedimiento.setTextColor(Color.parseColor("#000000")); // color de texto
-            txtprocedimiento.setText(listOBS.get(x).getProcedimiento()); // texto
+            txtprocedimiento.setText(list.get(x).getProcedimiento()); // texto
             txtprocedimiento.setId(View.generateViewId()); // asignar ID único
             linearLayout.addView(txtprocedimiento);
 
@@ -519,7 +520,7 @@ public class Cirugia_HCirugia extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             horaingresoEscondida.setLayoutParams(params);
             horaingresoEscondida.setTextColor(Color.parseColor("#000000")); // color de texto
-            horaingresoEscondida.setText(listOBS.get(x).getHoraingreso()); // texto
+            horaingresoEscondida.setText(list.get(x).getHoraingreso()); // texto
             horaingresoEscondida.setId(View.generateViewId()); // asignar ID único
 
             editTextList.add(horaingresoEscondida);
@@ -534,7 +535,7 @@ public class Cirugia_HCirugia extends AppCompatActivity {
             params.setMargins(10, 0, 10, 10); // márgenes
             primerIngresoEscondido.setLayoutParams(params);
             primerIngresoEscondido.setTextColor(Color.parseColor("#000000")); // color de texto
-            primerIngresoEscondido.setText(listOBS.get(x).getPrimeringreso()); // texto
+            primerIngresoEscondido.setText(list.get(x).getPrimeringreso()); // texto
             primerIngresoEscondido.setId(View.generateViewId()); // asignar ID único
 
             editTextList.add(primerIngresoEscondido);
@@ -542,23 +543,23 @@ public class Cirugia_HCirugia extends AppCompatActivity {
             // --------------------------------------------------------------------------------------
             //ESCONDIDOS
             // HORA ESCONDIDA
-            EditText idObsEscondida = new EditText(this);
-            idObsEscondida.setLayoutParams(new LinearLayout.LayoutParams(
+            EditText idEscondida = new EditText(this);
+            idEscondida.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, // ancho
                     LinearLayout.LayoutParams.WRAP_CONTENT // alto
             ));
-            params = (LinearLayout.LayoutParams) idObsEscondida.getLayoutParams();
+            params = (LinearLayout.LayoutParams) idEscondida.getLayoutParams();
             params.setMargins(10, 0, 10, 10); // márgenes
-            idObsEscondida.setLayoutParams(params);
-            idObsEscondida.setTextColor(Color.parseColor("#000000")); // color de texto
-            idObsEscondida.setText(String.valueOf(listOBS.get(x).getId())); // texto
-            idObsEscondida.setId(View.generateViewId()); // asignar ID único
+            idEscondida.setLayoutParams(params);
+            idEscondida.setTextColor(Color.parseColor("#000000")); // color de texto
+            idEscondida.setText(String.valueOf(list.get(x).getId())); // texto
+            idEscondida.setId(View.generateViewId()); // asignar ID único
 
-            editTextList.add(idObsEscondida);
+            editTextList.add(idEscondida);
         }
     }
 
-    private void mostrarOpciones(int indiceOBS) {
+    private void mostrarOpciones(int indice) {
 
 
         final CharSequence[] opciones = {"Eliminar", "Actualizar", "Cancelar"};
@@ -568,9 +569,9 @@ public class Cirugia_HCirugia extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int seleccion) {
                 if (opciones[seleccion] == "Eliminar") {
-                    eliminar_OBS(indiceOBS);
+                    eliminar(indice);
                 } else if (opciones[seleccion] == "Actualizar") {
-                    update_OBS(indiceOBS);
+                    update(indice);
                 } else if (opciones[seleccion] == "Cancelar") {
                     Toast.makeText(Cirugia_HCirugia.this, ALETAR_OPERACION_CANCELADA, Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
@@ -580,14 +581,14 @@ public class Cirugia_HCirugia extends AppCompatActivity {
         builder.show();
     }
 
-    private void eliminar_OBS(int indiceOBS){
+    private void eliminar(int indice){
         Alertas.showConfirmationDialog(Cirugia_HCirugia.this, "Confirmación", CONFIRMACION_ELIMINAR, new Alertas.ConfirmationListener() {
             @Override
             public void onConfirmed() {
-                float code = funcionalidad_cirugia.eliminar_Cirugia_TIPO(String.valueOf(listOBS.get(indiceOBS).getId()),"CHCIRUGIA");
+                float code = funcionalidad_cirugia.eliminar_Cirugia_TIPO(String.valueOf(list.get(indice).getId()),OPC_TABLA_CHCIRUGIA);
                 if (code >= 0) {
                     Toast.makeText(Cirugia_HCirugia.this, "Eliminado correctamente", Toast.LENGTH_SHORT).show();
-                    listOBS.remove(indiceOBS);
+                    list.remove(indice);
                     Intent intent = new Intent(Cirugia_HCirugia.this, Cirugia_HCirugia.class);
                     intent.putExtra("idPac", idPac);
                     intent.putExtra("idCama", idCama);
@@ -605,29 +606,29 @@ public class Cirugia_HCirugia extends AppCompatActivity {
         });
     }
 
-    private void update_OBS(int indiceOBS){
+    private void update(int indice){
 
-        String txtcama = editTextList.get(indiceOBS).getText().toString();
-        String txtdia = editTextList.get(indiceOBS + 1).getText().toString();
-        String txtefisico = editTextList.get(indiceOBS + 2).getText().toString();
-        String txtevolucion = editTextList.get(indiceOBS + 3).getText().toString();
-        String txtdx = editTextList.get(indiceOBS + 4).getText().toString();
-        String txtplan = editTextList.get(indiceOBS + 5).getText().toString();
-        String txttratamiento = editTextList.get(indiceOBS + 6).getText().toString();
-        String txtreslab = editTextList.get(indiceOBS + 7).getText().toString();
-        String txtresimagen = editTextList.get(indiceOBS + 8).getText().toString();
-        String txtprocedimiento = editTextList.get(indiceOBS + 9).getText().toString();
-        String txthoraingreso = editTextList.get(indiceOBS + 10).getText().toString();
-        String txtprimeringreso = editTextList.get(indiceOBS + 11).getText().toString();
-        int idObs = Integer.parseInt(editTextList.get(indiceOBS + 12).getText().toString());
+        String txtcama = editTextList.get(indice).getText().toString();
+        String txtdia = editTextList.get(indice + 1).getText().toString();
+        String txtefisico = editTextList.get(indice + 2).getText().toString();
+        String txtevolucion = editTextList.get(indice + 3).getText().toString();
+        String txtdx = editTextList.get(indice + 4).getText().toString();
+        String txtplan = editTextList.get(indice + 5).getText().toString();
+        String txttratamiento = editTextList.get(indice + 6).getText().toString();
+        String txtreslab = editTextList.get(indice + 7).getText().toString();
+        String txtresimagen = editTextList.get(indice + 8).getText().toString();
+        String txtprocedimiento = editTextList.get(indice + 9).getText().toString();
+        String txthoraingreso = editTextList.get(indice + 10).getText().toString();
+        String txtprimeringreso = editTextList.get(indice + 11).getText().toString();
+        int id = Integer.parseInt(editTextList.get(indice + 12).getText().toString());
 
 
-        ObjetoVO objeto = new ObjetoVO(idObs, txtcama, txtdia, txtefisico, txtevolucion, txtdx, txtplan, txttratamiento, txtreslab, txtresimagen, txtprocedimiento, txthoraingreso, txtprimeringreso);
+        ObjetoVO objeto = new ObjetoVO(id, txtcama, txtdia, txtefisico, txtevolucion, txtdx, txtplan, txttratamiento, txtreslab, txtresimagen, txtprocedimiento, txthoraingreso, txtprimeringreso);
 
-        int code = funcionalidad_cirugia.actualizar_Paciente_Cirugia(objeto,"CHCIRUGIA");
+        int code = funcionalidad_cirugia.actualizar_Paciente_Cirugia(objeto,OPC_TABLA_CHCIRUGIA);
 
         if(code >= 0){
-            Toast.makeText(Cirugia_HCirugia.this, "Se actualizo la Observación ".concat(objeto.getDia()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(Cirugia_HCirugia.this, "Se actualizo la ervación ".concat(objeto.getDia()), Toast.LENGTH_SHORT).show();
         }
     }
 

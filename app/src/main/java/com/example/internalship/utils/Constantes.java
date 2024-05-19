@@ -12,9 +12,11 @@ public class Constantes {
     public static String OCULTAR_CAMPOS = "Ocultar campos";
     public static String MOSTRAR_CAMPOS = "Mostrar campos";
     public static String CONFIRMACION_ELIMINAR = "¿Está seguro que desea eliminar?";
+    public static String OPC_TABLA_CHCIRUGIA = "CHCIRUGIA";
     public static String FORMATO_FECHA_DDMMYYYY = "dd-MM-yyyy";
 
     // --- COLORES ---
+
     public static String CELESTE_OSCURO = "#39FBFB";
     public static String CELESTE_CLARO = "#CBFEFE";
 }
