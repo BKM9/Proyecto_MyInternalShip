@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int CODIGO_SOLICITUD_PERMISO = 1;
 
+    @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,25 +63,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "Permiso denegado", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Permiso concedido", Toast.LENGTH_SHORT).show();
-        }
-
-
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE)) {
-            // Muestra una explicación al usuario.
-        } else {
-            // No es necesario mostrar una explicación al usuario.
-        }
-
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.MANAGE_EXTERNAL_STORAGE}, CODIGO_SOLICITUD_PERMISO);
-
-
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CODIGO_SOLICITUD_PERMISO);
-//        }
 
         iniciarbd();
         cantidadActividades();
@@ -110,55 +95,42 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.open();
-            }
-        });
-
-//        btn_main_medicina.setOnClickListener(v -> {
-//            Intent intent = new Intent(MainActivity.this, Vista_Medicina.class);
-//            startActivity(intent);
-//        });
+        imageButton.setOnClickListener(v -> drawerLayout.open());
 
         btn_main_cirugia.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, Cirugia_Main.class);
             startActivity(intent);
         });
 
-        navigationViewPrincipal.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        navigationViewPrincipal.setNavigationItemSelectedListener(menuItem -> {
 
-                int itemId = menuItem.getItemId();
+            int itemId = menuItem.getItemId();
 
-                if (itemId == R.id.nav_notas) {
+            if (itemId == R.id.nav_notas) {
 
-                    Intent intent = new Intent(MainActivity.this, Menu_Notas.class);
+                Intent intent = new Intent(MainActivity.this, Menu_Notas.class);
 
-                    startActivity(intent);
+                startActivity(intent);
 
-                    return true;
-                } else if (itemId == R.id.nav_agenda) {
+                return true;
+            } else if (itemId == R.id.nav_agenda) {
 
-                    actividadesDelDia.clear();
-                    actividadesDelDia = funcionalidad_actividades.getMostrarActividades();
-                    Intent intent = new Intent(MainActivity.this, Menu_Agenda.class);
-                    intent.putParcelableArrayListExtra("actividadesDelDia", (ArrayList<? extends Parcelable>) actividadesDelDia);
-                    startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                actividadesDelDia.clear();
+                actividadesDelDia = funcionalidad_actividades.getMostrarActividades();
+                Intent intent = new Intent(MainActivity.this, Menu_Agenda.class);
+                intent.putParcelableArrayListExtra("actividadesDelDia", (ArrayList<? extends Parcelable>) actividadesDelDia);
+                startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
-                } else if (itemId == R.id.nav_condicones) {
+            } else if (itemId == R.id.nav_condicones) {
 
-                    Intent intent = new Intent(MainActivity.this, Menu_Terminos_Condiciones.class);
+                Intent intent = new Intent(MainActivity.this, Menu_Terminos_Condiciones.class);
 
-                    startActivity(intent);
+                startActivity(intent);
 
-                    return true;
-                }
-
-                return false;
+                return true;
             }
+
+            return false;
         });
 
     }
@@ -177,37 +149,6 @@ public class MainActivity extends AppCompatActivity {
         actividadesDelDia.clear();
         actividadesDelDia = funcionalidad_actividades.getobtenerConFechaActualActividad();
         return actividadesDelDia.size();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("¿Estás seguro?");
-        builder.setMessage("¿Quieres salir de la aplicación?");
-        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-        builder.setNegativeButton("No", null);
-        builder.show();
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case CODIGO_SOLICITUD_PERMISO: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // El permiso fue concedido. Puedes continuar con la operación.
-                } else {
-                    // El permiso fue denegado. Debes manejar la denegación del permiso.
-                }
-                return;
-            }
-        }
     }
 
 }
