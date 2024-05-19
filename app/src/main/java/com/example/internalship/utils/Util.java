@@ -53,30 +53,6 @@ public class Util {
         return false;
     }
 
-    public static long obtenerMaxNumDiasObs_Cirugia(List<CObservacionesVO> listaObjetos) {
-        String fechaInicioStr = listaObjetos.get(0).getDia();
-
-        String fechaFinStr = listaObjetos.get(listaObjetos.size() - 1).getDia();
-
-        DateFormat formato = new SimpleDateFormat(FORMATO_FECHA_DDMMYYYY);
-        try {
-            Date fechaInicio = formato.parse(fechaInicioStr);
-            Date fechaFin = formato.parse(fechaFinStr);
-
-            long diferenciaEnMs = fechaFin.getTime() - fechaInicio.getTime();
-
-            long dias = diferenciaEnMs / (1000 * 60 * 60 * 24);
-
-            System.out.println("La cantidad de días entre las fechas es: " + dias);
-
-            return dias;
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return 1;
-    }
-
     public static <T> boolean esFechaMayorAladeIngreso(List<T> listaObjetos, String fechaComparar, Context context) {
 
         if (listaObjetos != null && !listaObjetos.isEmpty() && listaObjetos.get(0) instanceof ObservacionesVO) {
@@ -289,19 +265,6 @@ public class Util {
         }
 
         return 1;
-    }
-
-    public static String obtenerdiasenestadoporlistaObs_Cirugia(List<CObservacionesVO> objetoPaciente) {
-        if (!objetoPaciente.isEmpty()) {
-            if (objetoPaciente.size() > 1) {
-                String cantidaddias = String.valueOf(Util.obtenerMaxNumDiasObs_Cirugia(objetoPaciente));
-                return cantidaddias;
-            } else {
-                return "1";
-            }
-        } else {
-            return NO_INFORMACION;
-        }
     }
 
     public static String fechaVal(int numFecha) {

@@ -83,39 +83,6 @@ public class Funcionalidad_Cirugia extends DbHelper {
         return db.update(TABLE_PACIENTES_CIRUGIA, contentValues, "id_pac = ?", new String[]{String.valueOf(id)});
     }
 
-    public long insertar_Cirugia_OBS(String cama,String dia, String efisico, String evolucion,
-                                     String dx, String plan, String tratamiento,
-                                     String resLab, String resImagen, String procedimiento,
-                                     String horaingreso, String primeringreso) {
-
-        long id = 0;
-        try {
-
-            DbHelper dbHelper = new DbHelper(context);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("cama", cama);
-            contentValues.put("dia", dia);
-            contentValues.put("efisico", efisico);
-            contentValues.put("evolucion", evolucion);
-            contentValues.put("dx", dx);
-            contentValues.put("plann", plan);
-            contentValues.put("tratamiento", tratamiento);
-            contentValues.put("resLab", resLab);
-            contentValues.put("resImagen", resImagen);
-            contentValues.put("procedimiento", procedimiento);
-            contentValues.put("horaingreso", horaingreso);
-            contentValues.put("primeringreso", primeringreso);
-
-            id = db.insert(TABLE_PACIENTES_CIRUGIA_OBS, null, contentValues);
-
-        } catch (Exception e){
-            e.toString();
-        }
-        return id;
-    }
-
     public int eliminar_Cirugia_TIPO(String id, String tipo){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -266,32 +233,6 @@ public class Funcionalidad_Cirugia extends DbHelper {
         return contentValues;
     }
 
-    public int actualizar_Paciente_Cirugia_OBS(CObservacionesVO obs) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = getContentValues_OBS(obs);
-
-        return db.update(TABLE_PACIENTES_CIRUGIA_OBS, contentValues, "id_pac_obs = ?", new String[]{String.valueOf(obs.getId())});
-    }
-
-    @NonNull
-    private static ContentValues getContentValues_OBS(CObservacionesVO obs) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("cama", obs.getCama());
-        contentValues.put("dia", obs.getDia());
-        contentValues.put("efisico", obs.getEfisico());
-        contentValues.put("evolucion", obs.getEvolucion());
-        contentValues.put("dx", obs.getDx());
-        contentValues.put("plann", obs.getPlan());
-        contentValues.put("tratamiento", obs.getTratamiento());
-        contentValues.put("resLab", obs.getResLab());
-        contentValues.put("resImagen", obs.getResImagen());
-        contentValues.put("procedimiento", obs.getProcedimiento());
-        contentValues.put("horaingreso", obs.getHoraingreso());
-        contentValues.put("primeringreso", obs.getPrimeringreso());
-        return contentValues;
-    }
-
     public int eliminar_Cirugia_Paciente(int id, String cama) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -301,12 +242,6 @@ public class Funcionalidad_Cirugia extends DbHelper {
         db.delete(TABLE_PACIENTES_CIRUGIA_TSHOCK, "cama = ?", new String[]{cama});
 
         return db.delete(TABLE_PACIENTES_CIRUGIA, "id_pac = ?", new String[]{String.valueOf(id)});
-    }
-
-    public int eliminar_Cirugia_OBS(String id){
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        return db.delete(TABLE_PACIENTES_CIRUGIA_OBS, "id_pac_obs = ?", new String[]{id});
     }
 
     public List<CPacienteVO> listar_Cirugia_Paciente() {
@@ -437,6 +372,7 @@ public class Funcionalidad_Cirugia extends DbHelper {
 
         return listdatos;
     }
+
     public List<CUcisVO> list_CUCIVO(String cama){
         List<CUcisVO> listdatos = new ArrayList<>();
 
@@ -515,6 +451,7 @@ public class Funcionalidad_Cirugia extends DbHelper {
 
         return listdatos;
     }
+
     public List<CShockVO> list_TSHOCK(String cama){
         List<CShockVO> listdatos = new ArrayList<>();
 
