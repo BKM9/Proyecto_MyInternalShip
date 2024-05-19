@@ -1,6 +1,6 @@
-package com.example.internalship.iu.opciones.cirugia.hcirugia;
+package com.example.internalship.iu.opciones.cirugia.tshock;
 
-import static com.example.internalship.utils.Constantes.OPC_TABLA_CHCIRUGIA;
+import static com.example.internalship.utils.Constantes.OPC_TABLA_TSHOCK;
 import static com.example.internalship.utils.Util.fechaVal;
 
 import android.annotation.SuppressLint;
@@ -37,7 +37,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class Cirugia_HCirugia_Add extends AppCompatActivity {
+public class Cirugia_TSHOCK_Add extends AppCompatActivity {
 
     String idPac, idCama;
     EditText txtfechAdd, txtevolucionadd, txtdxadd, txtaddplan, txttratamientoadd;
@@ -47,14 +47,14 @@ public class Cirugia_HCirugia_Add extends AppCompatActivity {
     Switch primeravez;
     private boolean isDeleting = false;
     int banderaingreso;
-    Funcionalidad_Cirugia funcionalidad_cirugia = new Funcionalidad_Cirugia(Cirugia_HCirugia_Add.this);
+    Funcionalidad_Cirugia funcionalidad_cirugia = new Funcionalidad_Cirugia(Cirugia_TSHOCK_Add.this);
 
     List<ObjetoVO> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.cirugia_hcirugia_add);
+        setContentView(R.layout.cirugia_tshock_add);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -63,7 +63,7 @@ public class Cirugia_HCirugia_Add extends AppCompatActivity {
 
         getBundle();
 
-        list = funcionalidad_cirugia.list_Obtener(idCama,OPC_TABLA_CHCIRUGIA);
+        list = funcionalidad_cirugia.list_Obtener(idCama,OPC_TABLA_TSHOCK);
 
         init();
         
@@ -79,23 +79,23 @@ public class Cirugia_HCirugia_Add extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void init(){
 
-        txtexmaenfisicoadd = findViewById(R.id.ET_EFISICO_HCIRUGIA_CIRUGIA_ADD);
-        txtfechAdd = findViewById(R.id.ET_FECHA_HCIRUGIA_CIRUGIA_ADD);
-        txtevolucionadd = findViewById(R.id.ET_EVOLUCION_HCIRUGIA_CIRUGIA_ADD);
-        txtdxadd = findViewById(R.id.ET_DX_HCIRUGIA_CIRUGIA_ADD);
-        txtaddplan = findViewById(R.id.ET_PLAN_HCIRUGIA_CIRUGIA_ADD);
-        txttratamientoadd = findViewById(R.id.ET_TRATAMIENTO_HCIRUGIA_CIRUGIA_ADD);
-        txtlabadd = findViewById(R.id.ET_RESLAB_HCIRUGIA_CIRUGIA_ADD);
-        txtresimagenadd = findViewById(R.id.ET_RESIMAGEN_HCIRUGIA_CIRUGIA_ADD);
-        txtprocedimientoadd = findViewById(R.id.ET_PROCEDIMIENTO_HCIRUGIA_CIRUGIA_ADD);
-        primeravez = findViewById(R.id.SWITCH_PRIMERAVEZ_HCIRUGIA_CIRUGIA_ADD);
-        txthoraingresoadd = findViewById(R.id.ET_HORA_HCIRUGIA_CIRUGIA_ADD);
-        lbhoraingresoadd = findViewById(R.id.TV_HORA_HCIRUGIA_CIRUGIA_ADD);
-        twTituloCamaervacionADD = findViewById(R.id.TV_TITULO_HCIRUGIA_CIRUGIA_ADD);
-        btncancelaradd = findViewById(R.id.BTN_CANCELAR_HCIRUGIA_CIRUGIA_ADD);
-        btnadd = findViewById(R.id.BTN_AGREGAR_HCIRUGIA_CIRUGIA_ADD);
+        txtexmaenfisicoadd = findViewById(R.id.ET_EFISICO_TSHOCK_CIRUGIA_ADD);
+        txtfechAdd = findViewById(R.id.ET_FECHA_TSHOCK_CIRUGIA_ADD);
+        txtevolucionadd = findViewById(R.id.ET_EVOLUCION_TSHOCK_CIRUGIA_ADD);
+        txtdxadd = findViewById(R.id.ET_DX_TSHOCK_CIRUGIA_ADD);
+        txtaddplan = findViewById(R.id.ET_PLAN_TSHOCK_CIRUGIA_ADD);
+        txttratamientoadd = findViewById(R.id.ET_TRATAMIENTO_TSHOCK_CIRUGIA_ADD);
+        txtlabadd = findViewById(R.id.ET_RESLAB_TSHOCK_CIRUGIA_ADD);
+        txtresimagenadd = findViewById(R.id.ET_RESIMAGEN_TSHOCK_CIRUGIA_ADD);
+        txtprocedimientoadd = findViewById(R.id.ET_PROCEDIMIENTO_TSHOCK_CIRUGIA_ADD);
+        primeravez = findViewById(R.id.SWITCH_PRIMERAVEZ_TSHOCK_CIRUGIA_ADD);
+        txthoraingresoadd = findViewById(R.id.ET_HORA_TSHOCK_CIRUGIA_ADD);
+        lbhoraingresoadd = findViewById(R.id.TV_HORA_TSHOCK_CIRUGIA_ADD);
+        twTituloCamaervacionADD = findViewById(R.id.TV_TITULO_TSHOCK_CIRUGIA_ADD);
+        btncancelaradd = findViewById(R.id.BTN_CANCELAR_TSHOCK_CIRUGIA_ADD);
+        btnadd = findViewById(R.id.BTN_AGREGAR_TSHOCK_CIRUGIA_ADD);
 
-        twTituloCamaervacionADD.setText("HOSPITALIZACIÓN CAMA : ".concat(idCama));
+        twTituloCamaervacionADD.setText("T.SHOCK CAMA : ".concat(idCama));
 
         txtfechAdd.setOnClickListener(v -> {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -150,7 +150,7 @@ public class Cirugia_HCirugia_Add extends AppCompatActivity {
         btnadd.setOnClickListener(v -> guardarDatos(idCama));
 
         btncancelaradd.setOnClickListener(v -> {
-            Intent intent = new Intent(Cirugia_HCirugia_Add.this, Cirugia_Detalle.class);
+            Intent intent = new Intent(Cirugia_TSHOCK_Add.this, Cirugia_Detalle.class);
             Bundle bundle = new Bundle();
             intent.putExtras(bundle);
             startActivity(intent);
@@ -161,7 +161,7 @@ public class Cirugia_HCirugia_Add extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if(!list.isEmpty()){
-                        if(Util.existefechaprimerregistro(list, Cirugia_HCirugia_Add.this)){
+                        if(Util.existefechaprimerregistro(list, Cirugia_TSHOCK_Add.this)){
                             primeravez.setChecked(false);
                             banderaingreso = 0;
                         }else{
@@ -186,6 +186,7 @@ public class Cirugia_HCirugia_Add extends AppCompatActivity {
     }
 
     private void guardarDatos(String cama) {
+
         String valfisico = txtexmaenfisicoadd.getText().toString();
         String valfechIngreso = txtfechAdd.getText().toString();
         String valevoluciones = txtevolucionadd.getText().toString();
@@ -198,17 +199,17 @@ public class Cirugia_HCirugia_Add extends AppCompatActivity {
         String valtxthoraingresoadd = txthoraingresoadd.getText().toString();
 
         ObjetoVO objetoVO = new ObjetoVO(cama,valfechIngreso,valfisico,valevoluciones,valdx,valplan,valtratamiento,valReslab,valResImagen,valProcedimiento,valtxthoraingresoadd,String.valueOf(banderaingreso));
-        
-        if (!Util.existefechaendatosalmacenados(list, valfechIngreso)) {
-            
-            if(primeravez.isChecked()){
-                if (!Util.esNulo(Cirugia_HCirugia_Add.this, valfechIngreso, cama)) {
-                    
-                    float code = funcionalidad_cirugia.insertar_Cirugia_TIPOTABLA(objetoVO,OPC_TABLA_CHCIRUGIA);
-                    if (code >= 0) {
-                        Toast.makeText(Cirugia_HCirugia_Add.this, "Datos Almacenados", Toast.LENGTH_LONG).show();
 
-                        Intent intent = new Intent(Cirugia_HCirugia_Add.this, Cirugia_HCirugia.class);
+        if (!Util.existefechaendatosalmacenados(list, valfechIngreso)) {
+
+            if(primeravez.isChecked()){
+                if (!Util.esNulo(Cirugia_TSHOCK_Add.this, valfechIngreso, cama)) {
+
+                    float code = funcionalidad_cirugia.insertar_Cirugia_TIPOTABLA(objetoVO,OPC_TABLA_TSHOCK);
+                    if (code >= 0) {
+                        Toast.makeText(Cirugia_TSHOCK_Add.this, "Datos Almacenados", Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(Cirugia_TSHOCK_Add.this, Cirugia_TSHOCK.class);
                         Bundle bundle = new Bundle();
 
                         intent.putExtra("idPac", idPac);
@@ -219,17 +220,17 @@ public class Cirugia_HCirugia_Add extends AppCompatActivity {
                     }
 
                 } else {
-                    Toast.makeText(Cirugia_HCirugia_Add.this, "Falta la fecha", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Cirugia_TSHOCK_Add.this, "Falta la fecha", Toast.LENGTH_LONG).show();
                 }
             }
             else{
-                if (!Util.esNulo(Cirugia_HCirugia_Add.this, valfechIngreso, cama) /* && Util.esFechaMayorAladeIngreso(ObjetoPaciente.getervaciones(),valfechIngreso,this) */) {
+                if (!Util.esNulo(Cirugia_TSHOCK_Add.this, valfechIngreso, cama)) {
 
-                    float code = funcionalidad_cirugia.insertar_Cirugia_TIPOTABLA(objetoVO,OPC_TABLA_CHCIRUGIA);
+                    float code = funcionalidad_cirugia.insertar_Cirugia_TIPOTABLA(objetoVO,OPC_TABLA_TSHOCK);
                     if (code >= 0) {
-                        Toast.makeText(Cirugia_HCirugia_Add.this, "Datos Almacenados", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Cirugia_TSHOCK_Add.this, "Datos Almacenados", Toast.LENGTH_LONG).show();
 
-                        Intent intent = new Intent(Cirugia_HCirugia_Add.this, Cirugia_HCirugia.class);
+                        Intent intent = new Intent(Cirugia_TSHOCK_Add.this, Cirugia_TSHOCK.class);
                         Bundle bundle = new Bundle();
 
                         intent.putExtra("idPac", idPac);
@@ -240,12 +241,12 @@ public class Cirugia_HCirugia_Add extends AppCompatActivity {
                     }
 
                 } else {
-                    Toast.makeText(Cirugia_HCirugia_Add.this, "Falta la fecha", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Cirugia_TSHOCK_Add.this, "Falta la fecha", Toast.LENGTH_LONG).show();
                 }
             }
         }
         else {
-            Toast.makeText(Cirugia_HCirugia_Add.this, "La fecha ya existe", Toast.LENGTH_LONG).show();
+            Toast.makeText(Cirugia_TSHOCK_Add.this, "La fecha ya existe", Toast.LENGTH_LONG).show();
         }
     }
 }

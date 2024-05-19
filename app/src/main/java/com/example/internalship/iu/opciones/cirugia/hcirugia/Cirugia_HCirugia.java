@@ -4,7 +4,11 @@ import static com.example.internalship.utils.Constantes.ALETAR_OPERACION_CANCELA
 import static com.example.internalship.utils.Constantes.CELESTE_CLARO;
 import static com.example.internalship.utils.Constantes.CELESTE_OSCURO;
 import static com.example.internalship.utils.Constantes.CONFIRMACION_ELIMINAR;
+import static com.example.internalship.utils.Constantes.CONSULTA_OPCION_CONFIRMACION;
 import static com.example.internalship.utils.Constantes.MOSTRAR_CAMPOS;
+import static com.example.internalship.utils.Constantes.NOMBRE_OPC_ACTUALIZAR;
+import static com.example.internalship.utils.Constantes.NOMBRE_OPC_CANCELAR;
+import static com.example.internalship.utils.Constantes.NOMBRE_OPC_ELIMINAR;
 import static com.example.internalship.utils.Constantes.NO_INFORMACION;
 import static com.example.internalship.utils.Constantes.OCULTAR_CAMPOS;
 import static com.example.internalship.utils.Constantes.OPC_TABLA_CHCIRUGIA;
@@ -562,17 +566,17 @@ public class Cirugia_HCirugia extends AppCompatActivity {
     private void mostrarOpciones(int indice) {
 
 
-        final CharSequence[] opciones = {"Eliminar", "Actualizar", "Cancelar"};
+        final CharSequence[] opciones = {NOMBRE_OPC_ELIMINAR, NOMBRE_OPC_ACTUALIZAR, NOMBRE_OPC_CANCELAR};
         AlertDialog.Builder builder = new AlertDialog.Builder(Cirugia_HCirugia.this);
         builder.setTitle("Elige una opción");
         builder.setItems(opciones, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int seleccion) {
-                if (opciones[seleccion] == "Eliminar") {
+                if (opciones[seleccion] == NOMBRE_OPC_ELIMINAR) {
                     eliminar(indice);
-                } else if (opciones[seleccion] == "Actualizar") {
+                } else if (opciones[seleccion] == NOMBRE_OPC_ACTUALIZAR) {
                     update(indice*13);
-                } else if (opciones[seleccion] == "Cancelar") {
+                } else if (opciones[seleccion] == NOMBRE_OPC_CANCELAR) {
                     Toast.makeText(Cirugia_HCirugia.this, ALETAR_OPERACION_CANCELADA, Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 }
@@ -582,7 +586,7 @@ public class Cirugia_HCirugia extends AppCompatActivity {
     }
 
     private void eliminar(int indice){
-        Alertas.showConfirmationDialog(Cirugia_HCirugia.this, "Confirmación", CONFIRMACION_ELIMINAR, new Alertas.ConfirmationListener() {
+        Alertas.showConfirmationDialog(Cirugia_HCirugia.this, CONSULTA_OPCION_CONFIRMACION, CONFIRMACION_ELIMINAR, new Alertas.ConfirmationListener() {
             @Override
             public void onConfirmed() {
                 float code = funcionalidad_cirugia.eliminar_Cirugia_TIPO(String.valueOf(list.get(indice).getId()),OPC_TABLA_CHCIRUGIA);
@@ -628,7 +632,7 @@ public class Cirugia_HCirugia extends AppCompatActivity {
         int code = funcionalidad_cirugia.actualizar_Paciente_Cirugia(objeto,OPC_TABLA_CHCIRUGIA);
 
         if(code >= 0){
-            Toast.makeText(Cirugia_HCirugia.this, "Se actualizo la ervación ".concat(objeto.getDia()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(Cirugia_HCirugia.this, "Se actualizo ".concat(objeto.getDia()), Toast.LENGTH_SHORT).show();
         }
     }
 
