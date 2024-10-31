@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 public class DbHelper extends SQLiteOpenHelper {
 
     //NO TOCAR LA DATABASE_VERSION SI NO SE BORRA LO ALMACENADO
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NOMBRE = "notas.db";
     public static final String TABLE_NOTAS = "t_notas";
     public static final String TABLE_ACTIVIDADES = "t_actividades";
@@ -53,6 +53,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "descripcion TEXT NOT NULL)");
 
         generarTablas_Cirugia(db);
+        generarTabla_Imagenes(db);
     }
 
     public void generarTablas_Cirugia(@NonNull SQLiteDatabase db){
@@ -147,9 +148,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        switch (oldVersion){
-            case 1:
-                generarTabla_Imagenes(db);
-        }
+//        switch (oldVersion){
+//            case 1:
+//                generarTabla_Imagenes(db);
+//        }
     }
 }
